@@ -1,17 +1,35 @@
 package fr.istic.vv;
 
 import java.util.Comparator;
+import java.util.NoSuchElementException;
+import java.util.PriorityQueue;
 
 public class BinaryHeap<T> {
+    private final PriorityQueue<T> heap;
 
-    public BinaryHeap(Comparator<T> comparator) {  }
+    public BinaryHeap(Comparator<T> comparator) {
+        this.heap = new PriorityQueue<>(comparator);
+    }
 
-    public T pop() { return null; }
+    public T pop() {
+        if (heap.isEmpty()) {
+            throw new NoSuchElementException("Heap is empty");
+        }
+        return heap.poll();
+    }
 
-    public T peek() { return null; }
+    public T peek() {
+        if (heap.isEmpty()) {
+            throw new NoSuchElementException("Heap is empty");
+        }
+        return heap.peek();
+    }
 
-    public void push(T element) { }
+    public void push(T element) {
+        heap.offer(element);
+    }
 
-    public int count() { return 0; }
-
+    public int count() {
+        return heap.size();
+    }
 }
