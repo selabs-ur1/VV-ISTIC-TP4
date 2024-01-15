@@ -47,3 +47,21 @@ Use [jqwik](https://jqwik.net/) to create property based tests verifying these t
 - Do not use any existing implementation, write your own code. 
 - Use the provided project template as a starting point.
 - In the project you can launch the tests with `mvn test`.
+
+# Implémentation et tests
+
+## Implémentation
+
+* Utilisation d'un regex pour la validité des chiffres romains
+* Utilisation d'une map (string,int) qui associe à chaque symbole sa valeur
+* On utilise une LinkedHashMap pour s'assurer que les paires (string,int) soient bien ordonnées de manière décroissante (important pour la simplicité des méthodes de conversion)
+
+## Propriétés testées
+
+* Convertir un nombre en chiffre romain rend bien un chiffre romain valide
+* Convertir un nombre en chiffre romain puis un nombre retourne bien la même valeur
+
+## Bug
+
+* La map utilisée au départ n'était pas une LinkedHashMap et on ne récupérait pas les paires (string,int) dans le même ordre qu'on ne les as ajouté, or toRomanNumeral utilise le fait que la map est ordonnée de manière décroissante
+  * La méthode renvoyait donc un résultat erronné

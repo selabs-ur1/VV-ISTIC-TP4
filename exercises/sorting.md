@@ -21,3 +21,22 @@ Using [jqwik](https://jqwik.net/) create a differential fuzzing strategy to test
 - Do not use any existing implementation, write your own code. 
 - Use the provided project template as a starting point.
 - In the project you can launch the tests with `mvn test`.
+
+# Implémentation et tests
+
+## Implémentation
+
+Implémentation réalisée en suivant le pseudo code de chaque algorithme disponible sur leur page wikipédia
+
+* Les différents algorithmes ne trie pas directement la liste passée en paramètre, ils la copient et renvoient une version triée de celle-ci.
+
+## Propriétés testées
+
+Les algorithmes on été testé sur des listes d'int de taille minimum 1.
+
+* Test individuel de chaque algorithmes sur des listes d'int
+* Test des 3 algorithmes sur les mêmes listes
+
+## Bug
+
+* Bubble sort - La boucle for, contenu dans la boucle while, utilisait une limite erroné, provoquant une boucle infinie
