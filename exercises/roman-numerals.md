@@ -47,3 +47,44 @@ Use [jqwik](https://jqwik.net/) to create property based tests verifying these t
 - Do not use any existing implementation, write your own code. 
 - Use the provided project template as a starting point.
 - In the project you can launch the tests with `mvn test`.
+
+## Answer
+The implement of methods in the `RomanNumeralUtils` class are available [here](/code/roman-numerals/src/main/java/fr/istic/vv/RomanNumeraUtils.java).
+
+The property based tests are available [here](/code/roman-numerals/src/test/java/fr/istic/vv/RomanNumeralTest.java).
+
+At first test launch, following error was reported :
+```xml
+<testcase name="symbolsCorrectlyRepeated" classname="fr.istic.vv.RomanNumeralTest" time="0.018">
+    <failure message="Property [RomanNumeralTest:symbolsCorrectlyRepeated] failed with sample {0=4}" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Property [RomanNumeralTest:symbolsCorrectlyRepeated] failed with sample {0=4}
+    </failure>
+    <system-out><![CDATA[timestamp = 2024-01-23T09:48:57.636687, RomanNumeralTest:symbolsCorrectlyRepeated = 
+  org.opentest4j.AssertionFailedError:
+    Property [RomanNumeralTest:symbolsCorrectlyRepeated] failed with sample {0=4}
+
+                              |-------------------jqwik-------------------
+tries = 1                     | # of calls to property
+checks = 1                    | # of not rejected calls
+generation = RANDOMIZED       | parameters are randomly generated
+after-failure = PREVIOUS_SEED | use the previous seed
+edge-cases#mode = MIXIN       | edge cases are mixed in
+edge-cases#total = 4          | # of all combined edge cases
+edge-cases#tried = 0          | # of edge cases tried in current run
+seed = 562458162463211689     | random seed to reproduce generated values
+
+Shrunk Sample (1 steps)
+-----------------------
+  arg0: 4
+
+Original Sample
+---------------
+  arg0: 223
+
+
+]]></system-out>
+</testcase>
+```
+
+With the help of the report, `toRomanNumeral` has been fixed in [this commit](https://github.com/selabs-ur1/VV-ISTIC-TP4/commit/ae43c124e6b6d5952e410403d58e33b44f9cc737).
+
+After the fix, all tests correctly pass.
