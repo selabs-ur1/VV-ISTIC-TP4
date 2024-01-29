@@ -1,4 +1,4 @@
-# Validation and Verification: Practical Session
+# Validation and Verification: Practical Session - ISSA HASSAN FADOUL ET LE GAL MAXIME
 
 This practical session will help to better understand property-based testing, and in particular the tool [jqwik](https://jqwik.net/).
 
