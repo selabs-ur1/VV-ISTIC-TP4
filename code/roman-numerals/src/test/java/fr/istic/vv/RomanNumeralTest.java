@@ -23,11 +23,12 @@ public class RomanNumeralTest {
 
     @Property
     boolean toRomanNumeralReversibility(@ForAll("validIntegers") int number) {
-        if (number > 0 && number <= 3999) {
-            String roman = RomanNumeraUtils.toRomanNumeral(number);
-            return number == RomanNumeraUtils.parseRomanNumeral(roman);
-        }
-        return true;
+        return !RomanNumeraUtils.toRomanNumeral(number).isEmpty();
+    }
+
+    @Property
+    boolean toRomanNumeralReversibilityInvalid(@ForAll("invalidIntegers") int number) {
+        return RomanNumeraUtils.toRomanNumeral(number).isEmpty();
     }
 
     @Provide
@@ -43,5 +44,10 @@ public class RomanNumeralTest {
     @Provide
     Arbitrary<Integer> validIntegers() {
         return Arbitraries.integers().between(1, 3999);
+    }
+
+    @Provide
+    Arbitrary<Integer> invalidIntegers() {
+        return Arbitraries.integers().filter(i -> i < 0 || i > 3999);
     }
 }

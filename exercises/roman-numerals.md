@@ -53,3 +53,4 @@ Use [jqwik](https://jqwik.net/) to create property based tests verifying these t
 - validRomanNumeralOnlyContainsValidSymbols a permis de nous rendre compte qu'on avait oublié la chaîne de caractère vide.
 - parseValidRomanNumeral a permis de nous rendre compte qu'une chaîne de caractère vide doit renvoyer 0 mais un nombre incorrect doit renvoyer -1.
 - toRomanNumeralReversibility a permis de trouver une erreur avec le nombre 3
+- parseValidRomanNumeral a permis de nous rendre compte d'une erreur avec la lettre ```D``` qui ne passait pas dû à une conditionnelle pas assez stricte ```<=``` au lieu de ```<```.

@@ -22,8 +22,8 @@ public class RomanNumeraUtils {
 
             romanNumerals.put(current, romanNumerals.getOrDefault(current, 0) + 1);
 
-            if ((romanNumerals.get(current) == 3 && (current == 'I' || current == 'X' || current == 'C' || current == 'M'))
-                    || (romanNumerals.get(current) == 1 && (current == 'D' || current == 'L' || current == 'V'))) {
+            if ((romanNumerals.get(current) > 3 && (current == 'I' || current == 'X' || current == 'C' || current == 'M'))
+                    || (romanNumerals.get(current) > 1 && (current == 'D' || current == 'L' || current == 'V'))) {
                 return false;
             }
 
@@ -71,7 +71,7 @@ public class RomanNumeraUtils {
             char current = numeral.charAt(i);
             int currentValue = romanToValue.getOrDefault(current, 0);
 
-            if (i + 1 <= numeral.length()) {
+            if (i + 1 < numeral.length()) {
                 char next = numeral.charAt(i + 1);
                 int nextValue = romanToValue.getOrDefault(next, 0);
 
@@ -118,6 +118,10 @@ public class RomanNumeraUtils {
         }
 
         return result.toString();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(toRomanNumeral(6));
     }
 
 }
