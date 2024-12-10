@@ -1,5 +1,8 @@
 package fr.istic.vv;
 import net.jqwik.api.*;
+import net.jqwik.api.constraints.IntRange;
+
+
 import java.util.Random;
 
 /*
@@ -21,25 +24,86 @@ Chaque symbole ne peut être soustrait qu'une seule fois. Le symbole soustrait d
 
 public class RomanNumeralTest {
 
-
     @Property
-    boolean simpleOrderSymbols(@ForAll("validSimpleRomanNumerals") String numeralRoman){
-        return RomanNumeraUtils.isValidRomanNumeral(numeralRoman);
+    boolean badValues1(){
+        return RomanNumeraUtils.isValidRomanNumeral("") == false;
     }
 
     @Property
+    boolean badValues(){
+        return RomanNumeraUtils.isValidRomanNumeral(null) == false;
+    }
+
+    @Property(tries = 1000)
+    //@Report(Reporting.GENERATED)
+    boolean simpleOrderSymbols(@ForAll("validSimpleRomanNumerals") String numeralRoman){
+        if(!numeralRoman.isEmpty())
+            return RomanNumeraUtils.isValidRomanNumeral(numeralRoman);
+        else
+            return true;
+    }
+
+    @Property(tries = 1000)
+    //@Report(Reporting.GENERATED)
     boolean complexeOrderSymbols(@ForAll("validComplexRomanNumerals") String numeralRoman){
-        return RomanNumeraUtils.isValidRomanNumeral(numeralRoman);
+        if(!numeralRoman.isEmpty())
+            return RomanNumeraUtils.isValidRomanNumeral(numeralRoman);
+        else
+            return true;
+    }
+
+    @Property(tries = 1000)
+    //@Report(Reporting.GENERATED)
+    boolean parseSimpleOrderSymbols(@ForAll("validSimpleRomanNumerals") String numeralRoman){
+        if(numeralRoman.isEmpty())
+            return true;
+        int value = RomanNumeraUtils.parseRomanNumeral(numeralRoman);
+        String parseValue = RomanNumeraUtils.toRomanNumeral(value);
+        return parseValue.equals(numeralRoman);
+    }
+
+    @Property(tries = 1000)
+    //@Report(Reporting.GENERATED)
+    boolean parseComplexeOrderSymbols(@ForAll("validComplexRomanNumerals") String numeralRoman){
+        if(numeralRoman.isEmpty())
+            return true;
+        int value = RomanNumeraUtils.parseRomanNumeral(numeralRoman);
+        String parseValue = RomanNumeraUtils.toRomanNumeral(value);
+        return parseValue.equals(numeralRoman);
+    }
+
+    @Property
+    //@Report(Reporting.GENERATED)
+    boolean testLimiteNumeral1(@ForAll @IntRange(min = -10000, max = 0) int number) {
+      try {
+        RomanNumeraUtils.toRomanNumeral(number);
+        return false;
+      } catch (IllegalArgumentException e) {
+          return true;
+      }
+    }
+
+    @Property
+    //@Report(Reporting.GENERATED)
+    boolean testLimiteNumeral2(@ForAll @IntRange(min = 4000, max = 10000) int number) {
+        try {
+            RomanNumeraUtils.toRomanNumeral(number);
+            return false;
+        } catch (IllegalArgumentException e) {
+            return true;
+        }
     }
 
     @Provide
     Arbitrary<String> validSimpleRomanNumerals(){
-        return Arbitraries.of(generateSimpleNumeralsList());
+        return Arbitraries.strings()
+                .map(unused -> generateSimpleNumeralsList());
     }
 
     @Provide
     Arbitrary<String> validComplexRomanNumerals(){
-        return Arbitraries.of(generateComplexeNumeralsList());
+        return Arbitraries.strings()
+                .map(unused -> generateComplexeNumeralsList());
     }
 
     private String generateSimpleNumeralsList(){
@@ -65,7 +129,7 @@ public class RomanNumeralTest {
         int d = random.nextInt(2);
         addRomanUnitComplexe(numeralRoman, "D", d, cm == 0);
         int cd = random.nextInt(2);
-        addRomanUnitComplexe(numeralRoman, "CD", cd, d == 0);
+        addRomanUnitComplexe(numeralRoman, "CD", cd, d == 0 && cm == 0);
         int c = random.nextInt(2);
         addRomanUnitComplexe(numeralRoman, "C", c, cd == 0 && cm == 0);
         int xc = random.nextInt(2);
