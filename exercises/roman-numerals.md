@@ -8,10 +8,10 @@ Any natural number between 0 and 3999 can be represented in *roman numerals* usi
     |------|-----|-----|----|----|---|---|
     | 1000 | 500 | 100 | 50 | 10 | 5 | 1 |
 
-2. Symbols M, C, X, I can be repeated consecutively up to three times.
-3. Symbols D, L and V can not be repeated.
-4. When a symbol of lower value of appears to the right of a symbol of equal or higher value, all symbol values are added.
-5. When a symbols of lower value appears to the left of a symbols of higher value, the lower value is subtracted from the higher value. Only symbols C, X, V can be subtracted. Each symbol can be subtracted only once. The subtracted symbol must be one fifth or one tenth of the larger.
+2. Les symboles M, C, X, I peuvent être répétés consécutivement jusqu'à trois fois.
+3. Les symboles D, L et V ne peuvent pas être répétés.
+4. Lorsqu'un symbole de valeur inférieure apparaît à droite d'un symbole de valeur égale ou supérieure, toutes les valeurs des symboles sont additionnées.
+5. Lorsqu'un symbole de valeur inférieure apparaît à gauche d'un symbole de valeur supérieure, la valeur inférieure est soustraite de la valeur supérieure. Seuls les symboles C, X, V peuvent être soustraits. Chaque symbole ne peut être soustrait qu'une seule fois. Le symbole soustrait doit être un cinquième ou un dixième du plus grand.
 
 *Examples:*
 
