@@ -21,3 +21,7 @@ Using [jqwik](https://jqwik.net/) create a differential fuzzing strategy to test
 - Do not use any existing implementation, write your own code. 
 - Use the provided project template as a starting point.
 - In the project you can launch the tests with `mvn test`.
+
+# Answer
+
+Auncun bug trouvé.
