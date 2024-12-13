@@ -47,3 +47,20 @@ Use [jqwik](https://jqwik.net/) to create property based tests verifying these t
 - Do not use any existing implementation, write your own code. 
 - Use the provided project template as a starting point.
 - In the project you can launch the tests with `mvn test`.
+
+
+# Answer
+
+I used jqwik for property-based testing, writing tests before the implementation.
+
+**Key Points:**
+
+1. **Property-Based Testing**:  
+   By using jqwik, I tested a wide range of inputs, including numbers outside the valid range (less than 1 or greater than 3999) and invalid Roman numeral strings. These tests helped reveal issues in the initial code.
+
+2. **Main Improvements**:
+    - When given numbers outside the range [1–3999], `toRomanNumeral` now returns an empty string instead of throwing an exception.
+    - When given invalid Roman numeral strings, `parseRomanNumeral` now returns 0 instead of throwing an exception.
+
+3. **Results**:  
+   After making these changes, all tests passed. The solutions now handle invalid cases correctly, ensure proper subtractive notation, and work as expected for any input. The use of property-based testing helped to find and fix problems.
