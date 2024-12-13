@@ -21,3 +21,40 @@ Using [jqwik](https://jqwik.net/) create a differential fuzzing strategy to test
 - Do not use any existing implementation, write your own code. 
 - Use the provided project template as a starting point.
 - In the project you can launch the tests with `mvn test`.
+
+
+### Answer 
+J'ai eu plus de mal à implémenter les méthode de tris à cause du type générique mais la partie rédaction de test ne m'a pas posé de problèmes.
+
+Voici le résultat obtenus :
+
+```bash 
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running SortingTest
+timestamp = 2024-12-13T12:15:16.501331357, SortingTest:differentialFuzzTest = 
+                              |-------------------jqwik-------------------
+tries = 1000                  | # of calls to property
+checks = 1000                 | # of not rejected calls
+generation = RANDOMIZED       | parameters are randomly generated
+after-failure = PREVIOUS_SEED | use the previous seed
+edge-cases#mode = MIXIN       | edge cases are mixed in
+edge-cases#total = 10         | # of all combined edge cases
+edge-cases#tried = 10         | # of edge cases tried in current run
+seed = -7668271737342850089   | random seed to reproduce generated values
+
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.515 s - in SortingTest
+
+Results:
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+------------------------------------------------------------------------
+BUILD SUCCESS
+------------------------------------------------------------------------
+Total time:  2.612 s
+Finished at: 2024-12-13T12:15:16+01:00
+------------------------------------------------------------------------
+```

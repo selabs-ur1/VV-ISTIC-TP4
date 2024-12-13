@@ -54,3 +54,17 @@ Cette phrase du sujet n'est pas clair, Il existe de scontre exemple peu importe 
 
 J'utilise des regex pour vérifier les propriétés d'un nombre romain valide ou non. Pour les test j'ai créer des list de nombres romains valide est non vlaide pour tester les propriétes. 
 Pour tester les conversion je fais deux conversion qui transforme en un nombre dans l'autre écriture puis le retransforme dans l'ecriture d'origine. Le fisant pour chaque je vérifie bien les deux méthodes conjointement.
+
+Voici le resultat des tests :
+```bash 
+Results:
+
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
+
+------------------------------------------------------------------------
+BUILD SUCCESS
+------------------------------------------------------------------------
+Total time:  2.716 s
+Finished at: 2024-12-13T12:19:44+01:00
+------------------------------------------------------------------------
+```
