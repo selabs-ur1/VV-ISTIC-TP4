@@ -35,3 +35,25 @@ With the help of [jqwik](https://jqwik.net/) create a test that generates random
 - Use the provided project template as a starting point. 
 - In the project you can launch the tests with `mvn test`.
 - You may reuse your binary heap code from the previous practical assignment.
+
+## Answer
+
+J'ai bien implémenté la classe. Pour les tests, j'ai comparé la valeur sortie du heap avec les éléments d'une list contenant les même élements triés en utilisant Collections.sort. Je compares les premiers élements de chaque list avant de les supprimer. Je vérifie également que la valeur sortante de la heap est bien inférieure à la nouvelle racine de la heap.
+
+Le code est [ici](../code/heap/src/main/java/fr/istic/vv/BinaryHeap.java).
+Le test est [ici](../code/heap/src/test/java/fr/istic/vv/BinaryHeapTest.java).
+
+```bash 
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.498 s - in BinaryHeapTest
+
+Results:
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+------------------------------------------------------------------------
+BUILD SUCCESS
+------------------------------------------------------------------------
+Total time:  3.215 s
+Finished at: 2024-12-13T21:19:05+01:00
+------------------------------------------------------------------------
+```

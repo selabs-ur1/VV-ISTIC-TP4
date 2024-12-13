@@ -22,9 +22,11 @@ Using [jqwik](https://jqwik.net/) create a differential fuzzing strategy to test
 - Use the provided project template as a starting point.
 - In the project you can launch the tests with `mvn test`.
 
-
-### Answer 
+## Answer 
 J'ai eu plus de mal à implémenter les méthode de tris à cause du type générique mais la partie rédaction de test ne m'a pas posé de problèmes.
+
+Le code est [ici](../code/sorting/src/main/java/fr/istic/vv/Sorting.java).
+Le test est [ici](../code/sorting/src/test/java/fr/istic/vv/SortingTest.java).
 
 Voici le résultat obtenus :
 

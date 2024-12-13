@@ -55,6 +55,11 @@ Cette phrase du sujet n'est pas clair, Il existe de scontre exemple peu importe 
 J'utilise des regex pour vérifier les propriétés d'un nombre romain valide ou non. Pour les test j'ai créer des list de nombres romains valide est non vlaide pour tester les propriétes. 
 Pour tester les conversion je fais deux conversion qui transforme en un nombre dans l'autre écriture puis le retransforme dans l'ecriture d'origine. Le fisant pour chaque je vérifie bien les deux méthodes conjointement.
 
+
+Le code est [ici](../code/roman-numerals/src/main/java/fr/istic/vv/RomanNumeraUtils.java).
+Le test est [ici](../code/roman-numerals/src/test/java/fr/istic/vv/RomanNumeralTest.java).
+
+
 Voici le resultat des tests :
 ```bash 
 Results:
