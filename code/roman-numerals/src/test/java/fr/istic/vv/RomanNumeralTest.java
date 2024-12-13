@@ -6,20 +6,20 @@ import net.jqwik.api.constraints.IntRange;
 import java.util.Random;
 
 /*
---Seuls les symboles M , D , C , X , V , I peuvent être utilisés. Leurs valeurs sont indiquées ci-dessous :
-M	  D	  C	  L	 X	 V	I
-1000 500 100 50	 10	 5	1
+    --Seuls les symboles M , D , C , X , V , I peuvent être utilisés. Leurs valeurs sont indiquées ci-dessous :
+    M	  D	  C	  L	 X	 V	I
+    1000 500 100 50	 10	 5	1
 
---Les symboles M, C, X, I peuvent être répétés consécutivement jusqu'à trois fois.
+    --Les symboles M, C, X, I peuvent être répétés consécutivement jusqu'à trois fois.
 
---Les symboles D, L et V ne peuvent pas être répétés.
+    --Les symboles D, L et V ne peuvent pas être répétés.
 
---Lorsqu'un symbole de valeur inférieure apparaît à droite d'un symbole de valeur égale ou supérieure, toutes les valeurs
-des symboles sont additionnées.
+    --Lorsqu'un symbole de valeur inférieure apparaît à droite d'un symbole de valeur égale ou supérieure, toutes les valeurs
+    des symboles sont additionnées.
 
---Lorsqu'un symbole de valeur inférieure apparaît à gauche d'un symbole de valeur supérieure, la valeur inférieure est
-soustraite de la valeur supérieure. Seuls les symboles C, X, V peuvent être soustraits.
-Chaque symbole ne peut être soustrait qu'une seule fois. Le symbole soustrait doit être un cinquième ou un dixième du plus grand.
+    --Lorsqu'un symbole de valeur inférieure apparaît à gauche d'un symbole de valeur supérieure, la valeur inférieure est
+    soustraite de la valeur supérieure. Seuls les symboles C, X, V peuvent être soustraits.
+    Chaque symbole ne peut être soustrait qu'une seule fois. Le symbole soustrait doit être un cinquième ou un dixième du plus grand.
  */
 
 public class RomanNumeralTest {

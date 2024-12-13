@@ -26,10 +26,11 @@ public class Sorting {
     }
 
     private static <T> void quicksortHelper(T[] array, int low, int high, Comparator<T> comparator) {
-        if( low < high ) {}
-        int i = partition(array, low, high, comparator);
-        quicksortHelper(array, low, i-1, comparator);
-        quicksortHelper(array, i+1, high, comparator);
+        if( low < high ) {
+            int i = partition(array, low, high, comparator);
+            quicksortHelper(array, low, i-1, comparator);
+            quicksortHelper(array, i+1, high, comparator);
+        }
     }
 
     private static <T> int partition(T[] array, int low, int high, Comparator<T> comparator) {
@@ -73,19 +74,17 @@ public class Sorting {
         int k = left;
 
         while(i <= mid && j <= right) {
-            if(comparator.compare(array[i], array[j]) <= 0) {
+            if(comparator.compare(array[i], array[j]) <= 0)
                 array[k++] = array[i++];
-            }else{
+            else
                 array[k++] = array[j++];
-            }
         }
-        while(i <= mid) {
+        while(i <= mid) 
             array[k++] = array[i++];
-        }
 
-        while(j <= right) {
+        while(j <= right)
             array[k++] = array[j++];
-        }
+        
     }
 
 }
