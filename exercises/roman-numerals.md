@@ -47,3 +47,10 @@ Use [jqwik](https://jqwik.net/) to create property based tests verifying these t
 - Do not use any existing implementation, write your own code. 
 - Use the provided project template as a starting point.
 - In the project you can launch the tests with `mvn test`.
+
+## Answer
+
+Cette phrase du sujet n'est pas clair, Il existe de scontre exemple peu importe l'interpretation : "Only symbols C, X, V can be subtracted." je fais donc sans .
+
+J'utilise des regex pour vérifier les propriétés d'un nombre romain valide ou non. Pour les test j'ai créer des list de nombres romains valide est non vlaide pour tester les propriétes. 
+Pour tester les conversion je fais deux conversion qui transforme en un nombre dans l'autre écriture puis le retransforme dans l'ecriture d'origine. Le fisant pour chaque je vérifie bien les deux méthodes conjointement.
