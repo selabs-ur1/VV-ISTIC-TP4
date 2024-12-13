@@ -20,7 +20,8 @@ public class RomanNumeralUtils {
                         int value = ROMAN_TO_INT.get(c);
                         if(last >= value){
                                 res += value;
-                        } else res -= 2*last;
+                        } else res += value - 2*last;
+                        last = value;
                 }
                 return res;
         }

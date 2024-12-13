@@ -98,8 +98,22 @@ public class RomanNumeralTest {
     //for isRoman
 
     @Property
-    public boolean OneRomanCharAlwaysRoman(@ForAll @From("romanString") String input){
+    public boolean oneRomanCharAlwaysRoman(@ForAll @From("romanString") String input){
         return RomanNumeralUtils.isValidRomanNumeral(input);
+    }
+
+    @Property
+    public boolean fromStringToStringIdentity(@ForAll @From("romanString") String input){
+        int integer = RomanNumeralUtils.parseRomanNumeral(input);
+        String res = RomanNumeralUtils.toRomanNumeral(integer);
+        return res.equals(input);
+    }
+
+    @Property
+    public boolean fromIntegerToIntegerIdentity(@ForAll @IntRange(max = MAX_INT) int input){
+        String romanString = RomanNumeralUtils.toRomanNumeral(input);
+        int res = RomanNumeralUtils.parseRomanNumeral(romanString);
+        return res == input;
     }
 
 }
