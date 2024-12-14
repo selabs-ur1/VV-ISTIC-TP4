@@ -25,7 +25,7 @@ public class Sorting {
         return copy;
     }
 
-    public static <T> T[] mergesort(T[] array, Comparator<T> comparator) {
+    public static <T> T[] mergesort(T[] array, Comparator<T> comparator) { //we can optimize without making so many copies
         int len = array.length;
         T[] merge = Arrays.copyOf(array, len); //can't do new T[n] without its real class in java...
         if(len <= 1){
