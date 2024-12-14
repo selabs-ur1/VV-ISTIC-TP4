@@ -21,9 +21,10 @@ public class RomanNumeralTest {
     }
 
     @Property
-    boolean parseRomanNumeralNumeralAlwaysPositive(
+    boolean parseRomanNumeralNumeralAlwaysInRange(
             @ForAll("romanNumeralProvider") String numeral) {
-        return RomanNumeraUtils.parseRomanNumeral(numeral) >= 0;
+        int value = RomanNumeraUtils.parseRomanNumeral(numeral);
+        return value >= 0 && value <= RomanNumeraUtils.MAX_NUMERAL_VALUE;
     }
 
     @Property
@@ -40,12 +41,14 @@ public class RomanNumeralTest {
     }
 
     @Property
-    boolean parseRomanNumeralIsomorphism(@ForAll @IntRange int n) {
+    boolean parseRomanNumeralIsomorphism(
+            @ForAll @IntRange(max = RomanNumeraUtils.MAX_NUMERAL_VALUE) int n) {
         return RomanNumeraUtils.parseRomanNumeral(RomanNumeraUtils.toRomanNumeral(n)) == n;
     }
 
     @Property
-    boolean toRomanNumeralAlwaysRoman(@ForAll @IntRange int n) {
+    boolean toRomanNumeralAlwaysRoman(
+            @ForAll @IntRange(max = RomanNumeraUtils.MAX_NUMERAL_VALUE) int n) {
         return RomanNumeraUtils.isValidRomanNumeral(RomanNumeraUtils.toRomanNumeral(n));
     }
 
@@ -58,6 +61,24 @@ public class RomanNumeralTest {
         }
 
         return false;
+    }
+
+    @Property
+    boolean toRomanNumeralUndefinedOverMax(
+            @ForAll @IntRange(min = RomanNumeraUtils.MAX_NUMERAL_VALUE + 1) int n) {
+        try {
+            RomanNumeraUtils.toRomanNumeral(n);
+        } catch (IllegalArgumentException e) {
+            return true;
+        }
+
+        return false;
+    }
+
+    @Property
+    boolean toRomanNumeralAlwaysValid(
+            @ForAll @IntRange(max = RomanNumeraUtils.MAX_NUMERAL_VALUE) int n) {
+        return RomanNumeraUtils.isValidRomanNumeral(RomanNumeraUtils.toRomanNumeral(n));
     }
 
     @Property
