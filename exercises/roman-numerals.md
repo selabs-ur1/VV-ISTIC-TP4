@@ -47,3 +47,11 @@ Use [jqwik](https://jqwik.net/) to create property based tests verifying these t
 - Do not use any existing implementation, write your own code. 
 - Use the provided project template as a starting point.
 - In the project you can launch the tests with `mvn test`.
+
+
+## Bug trouvés en utilisant des Property Based Tests :
+
+1. Grace aux tests d'identité, on a pu remarquer que notre fonction de parsing ne fonctionnait que pour des nombres romains avec des symboles qui suivent le poids des symboles. L'algorithme ne retrouvait donc pas correctement les valeurs de "IX", "IM", "IV" etc.
+Cela était simplement lié à la variable "last" qui n'était pas mise à jour.
+
+2. Grace au tests d'identité, on a pu encore remarquer que notre fonction de parsing ne réalisait pas correctement le calcul de soustraction de nombres romains. Il fallait simplement faire la somme avec la valeur déjà calculée dans "res".

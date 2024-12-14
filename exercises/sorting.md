@@ -21,3 +21,8 @@ Using [jqwik](https://jqwik.net/) create a differential fuzzing strategy to test
 - Do not use any existing implementation, write your own code. 
 - Use the provided project template as a starting point.
 - In the project you can launch the tests with `mvn test`.
+
+
+## Bug trouvés en utilisant des Property Based Tests avec differencial fuzzing test :
+
+1. Le compteur de bubblesort était inversé et la condition d'arrêt de la boucle aussi. Au lieu de compter de n-1 à 1, on ne pouvait pas rentrer dans la boucle.
