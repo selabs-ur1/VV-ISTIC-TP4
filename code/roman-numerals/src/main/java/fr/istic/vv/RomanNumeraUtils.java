@@ -51,16 +51,18 @@ public class RomanNumeraUtils {
                 valid = false;
             }
 
-            System.out.println("i=" + i + ", cpt=" + cpt + ", cptSub=" + cptSub + ", c="
-                    + c + ", cVal=" + cVal + ", lastChar=" + lastChar + ", lastCharVal=" +
-                    lastCharVal + ", valid=" + valid);
-
             lastChar = c;
             i++;
         }
         return valid;
     }
 
+    /**
+     * parse Roman Numeral String to integer
+     *
+     * @param numeral
+     * @return
+     */
     public static int parseRomanNumeral(String numeral) {
         if (!isValidRomanNumeral(numeral)) {
             return -1;
@@ -87,6 +89,12 @@ public class RomanNumeraUtils {
         return value;
     }
 
+    /**
+     * get latin numeral String from integer
+     *
+     * @param number
+     * @return
+     */
     public static String toRomanNumeral(int number) {
         int multiplier = 1000;
         String numeral = "";
@@ -183,7 +191,6 @@ public class RomanNumeraUtils {
                 ret = "I";
                 break;
         }
-        System.out.println("strValueOf=" + ret);
         return ret;
     }
 }
