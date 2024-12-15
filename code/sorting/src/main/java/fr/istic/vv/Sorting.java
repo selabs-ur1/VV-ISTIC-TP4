@@ -27,11 +27,46 @@ public class Sorting {
         return result;
     }
 
-    public static <T> T[] quicksort(T[] array, Comparator<T> comparator) {
-        return null;
+    public static <T> List<T> quicksort(List<T> array, Comparator<T> comparator) {
+        int length = array.size();
+
+        List<T> result = new ArrayList<>(array);
+        quicksortSub(result, 0, length, comparator);
+
+        return result;
     }
 
-    public static <T> T[] mergesort(T[] array, Comparator<T> comparator) {
+    private static <T> void quicksortSub(List<T> array, int start, int end,
+            Comparator<T> comparator) {
+        if (start >= end || start < 0)
+            return;
+
+        int middle = partition(array, start, end, comparator);
+
+        quicksortSub(array, start, middle, comparator);
+        quicksortSub(array, middle + 1, end, comparator);
+    }
+
+    private static <T> int partition(List<T> array, int start, int end, Comparator<T> comparator) {
+        T pivot = array.get(end - 1);
+        int i = start;
+
+        for (int j = start; j < end - 1; j++)
+            if (comparator.compare(array.get(j), pivot) <= 0) {
+                T tmp = array.get(i);
+                array.set(i, array.get(j));
+                array.set(j, tmp);
+                i++;
+            }
+
+        T tmp = array.get(i);
+        array.set(i, array.get(end - 1));
+        array.set(end - 1, tmp);
+
+        return i;
+    }
+
+    public static <T> List<T> mergesort(List<T> array, Comparator<T> comparator) {
         return null;
     }
 
