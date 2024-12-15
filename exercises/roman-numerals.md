@@ -47,3 +47,48 @@ Use [jqwik](https://jqwik.net/) to create property based tests verifying these t
 - Do not use any existing implementation, write your own code. 
 - Use the provided project template as a starting point.
 - In the project you can launch the tests with `mvn test`.
+
+
+## BUGS trouvés avec les tests 
+
+- Le premier test isARomanNumeral a permis de détecter un bug dû à une erreur
+d’inattention où la fonction isValidRomanNumeral rendait true lorsque l’on ne
+passait pas la condition de base car aucune branche else n’était définie et elle
+passait toute la boucle for sans rendre une fois false. Elle atterrissait donc dans 
+le cas où tout allait bien.
+
+- Le test isARomanValidRepeated3Times a permis de détecter un bug dans l’évaluation
+de la répétition, c’est à dire qu’un deuxième caractère de la même valeur que le
+précédent vu (nous évaluons une chaine à l’envers) est autorisé.
+
+- Le test isARomanValidRepeatedMore a permis de détecter le bug lié au fait que
+l’on commençait à compter les répétitions qu’à partir de la seconde répétition. La
+variable était initialisée à 0 au lieu de 1, ce qui ne permettait pas de détecter
+la 4e répétition et donc de rendre faux (le code considérait qu’il s’agissait que
+la 3e.)
+
+- Le test isARomanInvalidSubstracted a permis de détecter que des valeurs plus
+petites pouvaient passer à gauche d’une valeur plus grande sans les soustraire à
+cause d’une mauvaise évaluation de isValid qui comparait les caractères plutôt que
+leurs valeurs romaines associées dans la table symbols.
+
+- De la même manière, isARomanValidSubstracted a permis de détecter une mauvaise
+évaluation dans la fonction canBeSubstractedBy qui comparait la valeur romaine d’un
+caractère divisée par 10 ou 5 au caractère (char) de ce que l’on souhaitait retirer
+(par exemple le caratère ‘« I » avec sa valeur entière).
+
+- convertIntegersToRomanNumerals a permis de détecter que pour générer tous les
+nombres entre 0 et 3999, L et D doivent aussi être soustractables pour pouvoir
+faire 400 et 40. Au contraire de ce qui nous est indiqué dans l’énoncé où seuls C,
+X, V peuvent être soustraits. Ainsi que M pour pouvoir faire 900.
+
+- Ce test a aussi permis de détecter qu’utiliser une simple map ne permet pas de
+garder l’ordre d’insertion et nous provoque donc un effet de bord lors de la
+conversion où certaines valeurs sont sautées. (Par exemple on obtient VVVV au lieu
+de XX car le V est venu avant malgré l’ordre d’insertion).
+Il a permis de détecter une nouvelle erreur d’inattention dans la fonction
+parseRomanNumeral
+Où les caractères étaient comparés à la place de leurs valeurs romaines. 
+
+
+ 
