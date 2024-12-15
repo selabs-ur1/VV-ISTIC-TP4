@@ -73,7 +73,11 @@ public class BinaryHeap<T> {
     }
 
     public void push(T element) {
-        elements.set(size, element);/*Insert new element at end*/
+        if(element == null) {
+            throw new IllegalArgumentException("Element cannot be null");
+        }
+        /*Insert new element at end*/
+        elements.add(element);
         int k = size; /*store the index ,for checking heap property*/
         size++; /*Increase the size*/
         /*Fix the min heap property*/

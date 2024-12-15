@@ -35,3 +35,4 @@ With the help of [jqwik](https://jqwik.net/) create a test that generates random
 - Use the provided project template as a starting point. 
 - In the project you can launch the tests with `mvn test`.
 - You may reuse your binary heap code from the previous practical assignment.
+
