@@ -7,17 +7,17 @@ import java.util.Set;
 public class RomanNumeralTest {
 
     @Provide
-    Arbitrary<Integer> romanRangeIntegers() {
+    Arbitrary<Integer> validRomanNumbers() {
         return Arbitraries.integers().between(1, 3999);
     }
 
     @Provide
-    Arbitrary<Integer> outsideRomanRangeIntegers() {
+    Arbitrary<Integer> invalidRomanNumbers() {
         return Arbitraries.integers().filter(i -> i <= 0 || i > 3999);
     }
 
     @Provide
-    Arbitrary<String> someValidRomanNumerals() {
+    Arbitrary<String> validRomanStrings() {
         Set<String> examples = Set.of("I", "IV", "IX", "X", "XL", "XC", "CD", "CM",
                 "MMMDCCCLXXXVIII",
                 "MCMXCIX",
@@ -26,45 +26,45 @@ public class RomanNumeralTest {
     }
 
     @Provide
-    Arbitrary<String> invalidRomanNumerals() {
+    Arbitrary<String> invalidRomanStrings() {
         Set<String> examples = Set.of("IIII", "VV", "LL", "DD", "IC", "XM", "MCMXCIIV", "IXX",
                 "ABC", "VX", "LC", "");
         return Arbitraries.of(examples);
     }
 
     @Property
-    boolean roundTripProperty(@ForAll("romanRangeIntegers") int n) {
+    boolean roundTripConversion(@ForAll("validRomanNumbers") int n) {
         String roman = RomanNumeraUtils.toRomanNumeral(n);
         int parsed = RomanNumeraUtils.parseRomanNumeral(roman);
         return parsed == n;
     }
 
     @Property
-    boolean generatedRomanIsValid(@ForAll("romanRangeIntegers") int n) {
+    boolean validNumbersGenerateValidRomans(@ForAll("validRomanNumbers") int n) {
         String roman = RomanNumeraUtils.toRomanNumeral(n);
         return RomanNumeraUtils.isValidRomanNumeral(roman);
     }
 
     @Property
-    boolean outsideRangeIsInvalid(@ForAll("outsideRomanRangeIntegers") int n) {
+    boolean invalidNumbersGenerateInvalidRomans(@ForAll("invalidRomanNumbers") int n) {
         String roman = RomanNumeraUtils.toRomanNumeral(n);
         return !RomanNumeraUtils.isValidRomanNumeral(roman);
     }
 
     @Property
-    boolean knownValidRomansParseCorrectly(@ForAll("someValidRomanNumerals") String roman) {
+    boolean validRomansAreParsedCorrectly(@ForAll("validRomanStrings") String roman) {
         boolean valid = RomanNumeraUtils.isValidRomanNumeral(roman);
         int parsed = RomanNumeraUtils.parseRomanNumeral(roman);
         return valid && parsed > 0 && parsed <= 3999;
     }
 
     @Property
-    boolean knownInvalidRomansAreInvalid(@ForAll("invalidRomanNumerals") String roman) {
+    boolean invalidRomansAreDetected(@ForAll("invalidRomanStrings") String roman) {
         return !RomanNumeraUtils.isValidRomanNumeral(roman);
     }
 
     @Property
-    boolean parseInvalidRomans(@ForAll("invalidRomanNumerals") String roman) {
+    boolean parseInvalidRomansReturnsZero(@ForAll("invalidRomanStrings") String roman) {
         int parsed = RomanNumeraUtils.parseRomanNumeral(roman);
         return parsed == 0;
     }
