@@ -20,19 +20,40 @@ public class SortingTest {
     }
 
     @Property
-    boolean all_sorting_sorted_correctly(@ForAll("integerArrays") Integer[] array) {
+    boolean bubble_sort_proper_result(@ForAll("integerArrays") Integer[] array) {
         Comparator<Integer> comparator = Integer::compareTo; // Il n'est pas dit que nous devions implémenter le comparateur donc autant prendre
         // celui de java pour éviter des bugs supplémentaire
 
         Integer[] bubbleSorted = Sorting.bubblesort(array.clone(), comparator);
+
+        Arrays.sort(array, comparator);
+
+        return Arrays.equals(array, bubbleSorted);
+    }
+
+    @Property
+    boolean quick_sort_proper_result(@ForAll("integerArrays") Integer[] array) {
+        Comparator<Integer> comparator = Integer::compareTo; // Il n'est pas dit que nous devions implémenter le comparateur donc autant prendre
+        // celui de java pour éviter des bugs supplémentaire
+
         Integer[] quickSorted = Sorting.quicksort(array.clone(), comparator);
+
+        Arrays.sort(array, comparator);
+
+        return Arrays.equals(array, quickSorted);
+
+    }
+
+    @Property
+    boolean merge_sort_proper_result(@ForAll("integerArrays") Integer[] array) {
+        Comparator<Integer> comparator = Integer::compareTo; // Il n'est pas dit que nous devions implémenter le comparateur donc autant prendre
+        // celui de java pour éviter des bugs supplémentaire
+
         Integer[] mergeSorted = Sorting.mergesort(array.clone(), comparator);
 
         Arrays.sort(array, comparator);
 
-        return Arrays.equals(array, bubbleSorted) &&
-               Arrays.equals(array, quickSorted) &&
-               Arrays.equals(array, mergeSorted);
+        return Arrays.equals(array, mergeSorted);
 
     }
 }
