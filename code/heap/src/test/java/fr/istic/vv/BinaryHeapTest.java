@@ -20,18 +20,22 @@ public class BinaryHeapTest {
         return heap;
     }
 
+    @Provide
+    private static Arbitrary<List<Integer>> twoElemList() {
+        return Arbitraries.integers().unique().list().ofMinSize(2);
+    }
+
     @Property
     boolean countCorrespondsToDistinctPushes(@ForAll List<Integer> list) {
         BinaryHeap<Integer> heap = heapFromList(list);
-        List<Integer> distincts = list.stream().distinct().collect(Collectors.toList());
 
-        return distincts.size() == heap.count();
+        return list.size() == heap.count();
     }
 
     @Property
     boolean pushIncreaseLength(@ForAll List<Integer> list, @ForAll int i) {
         BinaryHeap<Integer> heap = heapFromList(list);
-        int expectedCount = heap.count() + (list.contains(i) ? 0 : 1);
+        int expectedCount = heap.count() + 1;
 
         heap.push(i);
 
@@ -51,7 +55,7 @@ public class BinaryHeapTest {
     @Example
     boolean popEmptyException() {
         try {
-            new BinaryHeap<Integer>(INT_COMPARATOR).pop();
+            new BinaryHeap<>(INT_COMPARATOR).pop();
         } catch (NoSuchElementException e) {
             return true;
         }
@@ -62,7 +66,7 @@ public class BinaryHeapTest {
     @Example
     boolean peekEmptyException() {
         try {
-            new BinaryHeap<Integer>(INT_COMPARATOR).peek();
+            new BinaryHeap<>(INT_COMPARATOR).peek();
         } catch (NoSuchElementException e) {
             return true;
         }
@@ -103,8 +107,9 @@ public class BinaryHeapTest {
     }
 
     @Property
-    boolean popNonEmptyRemoveFromHeap(@ForAll @NotEmpty List<Integer> list) {
-        BinaryHeap<Integer> heap = heapFromList(list);
+    boolean popNonEmptyRemoveFromHeap(@ForAll("twoElemList") List<Integer> list) {
+        List<Integer> distinct = list.stream().distinct().collect(Collectors.toList());
+        BinaryHeap<Integer> heap = heapFromList(distinct);
         int expected = heap.pop();
 
         return expected != heap.peek();
@@ -134,7 +139,7 @@ public class BinaryHeapTest {
 
         heap.push(i);
 
-        return expected != heap.peek();
+        return expected == heap.peek();
     }
 
     @Property
@@ -145,6 +150,12 @@ public class BinaryHeapTest {
 
         heap.push(i);
 
-        return expected != heap.pop();
+        return expected == heap.pop();
+    }
+
+    @Example
+    void test() {
+        BinaryHeap<Integer> heap = heapFromList(List.of(0, 0, 0, -1));
+        heap.pop();
     }
 }

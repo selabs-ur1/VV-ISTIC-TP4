@@ -10,21 +10,26 @@ public class BinaryHeap<T> {
     private final Comparator<T> comparator;
     private final List<T> heap = new ArrayList<>();
 
-    private int count = 0;
-
     public BinaryHeap(Comparator<T> comparator) {
         this.comparator = comparator;
     }
 
     public T pop() {
+        int count = heap.size();
+
         if (count == 0)
             throw new NoSuchElementException("the heap is currently empty");
 
-        T result = heap.get(0);
+        T result = heap.remove(0);
+        if (--count == 0)
+            return result;
 
         // We move the last element of the heap to the root.
-        heap.add(heap.getLast());
-        heap.removeLast();
+        T lastElement = heap.remove(count - 1);
+        if (heap.isEmpty())
+            heap.add(lastElement);
+        else
+            heap.add(0, lastElement);
 
         // Then, we "percolate it down" to preserve heap property.
 
@@ -44,7 +49,7 @@ public class BinaryHeap<T> {
 
                 // If the child key is bigger than the current key, use the other child key.
                 if (comparator.compare(currKey, heap.get(indexToSwap)) < 0)
-                    indexToSwap = leftRightCmp < 0 ? rightIndex : leftRightCmp;
+                    indexToSwap = leftRightCmp < 0 ? rightIndex : leftIndex;
             } else if (rightIndex >= count) // ...otherwise choose the only possible child.
                 indexToSwap = leftIndex;
             else
@@ -66,12 +71,11 @@ public class BinaryHeap<T> {
             rightIndex = currIndex * 2 + 2;
         }
 
-        count--;
         return result;
     }
 
     public T peek() {
-        if (count == 0)
+        if (heap.isEmpty())
             throw new NoSuchElementException("the heap is currently empty");
 
         return heap.get(0);
@@ -80,8 +84,8 @@ public class BinaryHeap<T> {
     public void push(T element) {
         // Add the element to the heap.
         heap.add(element);
-        count++;
 
+        int count = heap.size();
         int currIndex = count - 1;  // Newly added element index.
         int parentIndex;            // Index of its parent.
         T currKey;                  // Key of newly added element.
@@ -103,12 +107,12 @@ public class BinaryHeap<T> {
             heap.set(currIndex, parentKey);
             heap.set(parentIndex, currKey);
 
-            currIndex = count - 1;
+            currIndex = parentIndex;
         }
     }
 
     public int count() {
-        return count;
+        return heap.size();
     }
 
 }
