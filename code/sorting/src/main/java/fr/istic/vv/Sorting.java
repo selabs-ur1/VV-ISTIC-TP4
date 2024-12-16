@@ -20,7 +20,7 @@ public class Sorting {
                     swapped = true;
                 }
             }
-        } while (!swapped);
+        } while (swapped);
         return array;
     }
 
