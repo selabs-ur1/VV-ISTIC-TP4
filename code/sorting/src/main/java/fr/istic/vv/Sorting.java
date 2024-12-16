@@ -36,7 +36,7 @@ public class Sorting {
     // https://en.wikipedia.org/wiki/Quicksort#Hoare_partition_scheme
     // Sorts (a portion of) an array, divides it into partitions, then sorts those
     private static <T> void quicksortHelper(T[] array, int low, int high, Comparator<T> comparator) {
-        if (high - low < 2 || low >= high) {
+        if (low < 0 || high < 0 || low >= high) {
             return;
         }
         int p = partition(array, low, high, comparator);
