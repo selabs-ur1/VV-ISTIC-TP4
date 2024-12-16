@@ -1,5 +1,11 @@
 package fr.istic.vv;
-import net.jqwik.api.*;
+
+import net.jqwik.api.Arbitraries;
+import net.jqwik.api.Arbitrary;
+import net.jqwik.api.Example;
+import net.jqwik.api.ForAll;
+import net.jqwik.api.Property;
+import net.jqwik.api.Provide;
 import net.jqwik.api.constraints.NotEmpty;
 
 import java.util.Comparator;
@@ -22,7 +28,10 @@ public class BinaryHeapTest {
 
     @Provide
     private static Arbitrary<List<Integer>> twoElemList() {
-        return Arbitraries.integers().unique().list().ofMinSize(2);
+        return Arbitraries.integers()
+                .unique()
+                .list()
+                .ofMinSize(2);
     }
 
     @Property
@@ -108,7 +117,9 @@ public class BinaryHeapTest {
 
     @Property
     boolean popNonEmptyRemoveFromHeap(@ForAll("twoElemList") List<Integer> list) {
-        List<Integer> distinct = list.stream().distinct().collect(Collectors.toList());
+        List<Integer> distinct = list.stream()
+                .distinct()
+                .collect(Collectors.toList());
         BinaryHeap<Integer> heap = heapFromList(distinct);
         int expected = heap.pop();
 
@@ -120,7 +131,8 @@ public class BinaryHeapTest {
         BinaryHeap<Integer> heap = heapFromList(list);
         int min = heap.peek();
 
-        return list.stream().allMatch(i -> min <= i);
+        return list.stream()
+                .allMatch(i -> min <= i);
     }
 
     @Property
@@ -128,7 +140,8 @@ public class BinaryHeapTest {
         BinaryHeap<Integer> heap = heapFromList(list);
         int min = heap.pop();
 
-        return list.stream().allMatch(i -> min <= i);
+        return list.stream()
+                .allMatch(i -> min <= i);
     }
 
     @Property
