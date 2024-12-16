@@ -50,4 +50,25 @@ public class SortingTest {
         return Sorting.quicksort(array, INT_COMPARATOR).size() == array.size();
     }
 
+    @Property
+    boolean mergeIsSorted(@ForAll List<Integer> array) {
+        List<Integer> sorted = Sorting.mergesort(array, INT_COMPARATOR);
+
+        for (int i = 1; i < sorted.size(); i++)
+            if (INT_COMPARATOR.compare(sorted.get(i - 1), sorted.get(i)) > 0)
+                return false;
+
+        return true;
+    }
+
+    @Property
+    boolean mergeContainsAll(@ForAll List<Integer> array) {
+        return array.containsAll(Sorting.mergesort(array, INT_COMPARATOR));
+    }
+
+    @Property
+    boolean mergeSameSize(@ForAll List<Integer> array) {
+        return Sorting.mergesort(array, INT_COMPARATOR).size() == array.size();
+    }
+
 }
