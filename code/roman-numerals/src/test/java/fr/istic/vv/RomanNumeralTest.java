@@ -10,11 +10,9 @@ import net.jqwik.api.constraints.Negative;
 
 public class RomanNumeralTest {
 
-    /* isValidRomanNumeral tests */
-
-    /* parseRomanNumeral */
-
     @Provide
+    @SuppressWarnings("unused")
+        // actually used
     Arbitrary<String> romanNumeralProvider() {
         return Arbitraries.strings()
                 .filter(RomanNumeraUtils::isValidRomanNumeral);
@@ -42,7 +40,8 @@ public class RomanNumeralTest {
 
     @Property
     boolean parseRomanNumeralIsomorphism(
-            @ForAll @IntRange(max = RomanNumeraUtils.MAX_NUMERAL_VALUE) int n) {
+            @ForAll @IntRange(max = RomanNumeraUtils.MAX_NUMERAL_VALUE)
+            int n) {
         return RomanNumeraUtils.parseRomanNumeral(RomanNumeraUtils.toRomanNumeral(n)) == n;
     }
 
@@ -78,7 +77,8 @@ public class RomanNumeralTest {
     @Property
     boolean toRomanNumeralAlwaysValid(
             @ForAll @IntRange(max = RomanNumeraUtils.MAX_NUMERAL_VALUE) int n) {
-        return RomanNumeraUtils.isValidRomanNumeral(RomanNumeraUtils.toRomanNumeral(n));
+        String numeral = RomanNumeraUtils.toRomanNumeral(n);
+        return RomanNumeraUtils.isValidRomanNumeral(numeral);
     }
 
     @Property
@@ -87,6 +87,4 @@ public class RomanNumeralTest {
         return RomanNumeraUtils.toRomanNumeral(RomanNumeraUtils.parseRomanNumeral(numeral))
                 .equals(numeral);
     }
-
-    /* toRomanNumeral */
 }
