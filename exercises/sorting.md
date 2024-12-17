@@ -24,7 +24,7 @@ Using [jqwik](https://jqwik.net/) create a differential fuzzing strategy to test
 
 ## Answers
 
-**WARNING $\LaTeX$ rendering of GitHub seems kinda bad, it may be preferable to read this doc on your personal machine (preferably using VS Code or IntelliJ)**
+**WARNING $\LaTeX$ rendering of GitHub seems kinda bad, it may be preferable to read this doc using a proper IDE (preferably using VS Code or IntelliJ)**
 
 In order to test the previous methods, we formalize the sorting problem and what properties a sorting function should follow.
 
