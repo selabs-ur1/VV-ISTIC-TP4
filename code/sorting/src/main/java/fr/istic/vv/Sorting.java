@@ -81,20 +81,20 @@ public class Sorting {
 
     // https://en.wikipedia.org/wiki/Merge_sort
     public static <T> T[] mergesort(T[] array, Comparator<T> comparator) {
-        T[] clonedArray = array.clone(); // clone here to avoid messing parameter array
-        TopDownMergeSort(clonedArray, comparator);
-        return clonedArray;
+        T[] arrayToSort = array.clone(); // clone here to avoid messing parameter array
+        TopDownMergeSort(arrayToSort, comparator);
+        return arrayToSort;
     }
 
     // https://en.wikipedia.org/wiki/Merge_sort#Top-down_implementation
-    private static <T> void TopDownMergeSort(T[] array, Comparator<T> comparator) {
-        T[] workingArray = array.clone();
-        TopDownSplitMerge(array, 0, workingArray.length, workingArray, comparator);
+    private static <T> void TopDownMergeSort(T[] arrayToSort, Comparator<T> comparator) {
+        T[] workingArray = arrayToSort.clone();
+        TopDownSplitMerge(arrayToSort, 0, workingArray.length, workingArray, comparator);
     }
 
     // Split A[] into 2 runs, sort both runs into B[], merge both runs from B[] to A[]
     // iBegin is inclusive; iEnd is exclusive (A[iEnd] is not in the set).
-    private static <T> void TopDownSplitMerge(T[] A, int iBegin, int iEnd, T[] B, Comparator<T> comparator) {
+    private static <T> void TopDownSplitMerge(T[] B, int iBegin, int iEnd, T[] A, Comparator<T> comparator) {
         // if run size == 1 consider it sorted
         if (iEnd - iBegin <= 1) {
             return;
@@ -104,7 +104,7 @@ public class Sorting {
         // recursively sort both runs from array A[] into B[]
         TopDownSplitMerge(A, iBegin, iMiddle, B, comparator);  // sort the left  run
         TopDownSplitMerge(A, iMiddle, iEnd, B, comparator);  // sort the right run
-        // merge the resulting runs from array B[] into A[]
+        // merarrayToSortge the resulting runs from array B[] into A[]
         TopDownMerge(B, iBegin, iMiddle, iEnd, A, comparator);
     }
 
