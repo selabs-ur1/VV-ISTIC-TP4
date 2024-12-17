@@ -38,6 +38,8 @@ With the help of [jqwik](https://jqwik.net/) create a test that generates random
 
 ## Answers
 
+**WARNING $\LaTeX$ rendering of GitHub seems kinda bad, it may be preferable to read this doc using a proper IDE (preferably using VS Code or IntelliJ)**
+
 ### Formalizing the problem.
 
 To do property-based testing of the heap, we will first formalize its 
