@@ -3,10 +3,22 @@ package fr.istic.vv;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Utility class for roman numeral - integer conversions.
+ */
 public class RomanNumeraUtils {
 
+    /**
+     * Maximum value of a numeral.
+     */
     public static final int MAX_NUMERAL_VALUE = 3999;
 
+    /**
+     * Check whether a string is a valid roman numeral or not.
+     *
+     * @param value A string.
+     * @return <code>true</code> if <code>value</code> is a valid roman numeral.
+     */
     public static boolean isValidRomanNumeral(String value) {
         Objects.requireNonNull(value);
 
@@ -51,6 +63,13 @@ public class RomanNumeraUtils {
         return true;
     }
 
+    /**
+     * Parses a roman numeral and return its associated integer value.
+     *
+     * @param numeral Roman numeral to parse.
+     * @return The integer value associated to <code>numeral</code>.
+     * @throws NumberFormatException If <code>numeral</code> is not a valid roman numeral.
+     */
     public static int parseRomanNumeral(String numeral) {
         Objects.requireNonNull(numeral);
 
@@ -94,6 +113,14 @@ public class RomanNumeraUtils {
         return result;
     }
 
+    /**
+     * Convert a given integer between <code>0</code> and <code>3999</code> to a roman number.
+     *
+     * @param number An integer between <code>0</code> and <code>3999</code>.
+     * @return The roman number associated to <code>number</code>.
+     * @throws NumberFormatException If <code>numeral</code> is lower than <code>0</code> or greater
+     *                               than <code>3999</code>.
+     */
     public static String toRomanNumeral(int number) {
         if (number < 0 || number > RomanNumeraUtils.MAX_NUMERAL_VALUE)
             throw new NumberFormatException(
@@ -144,6 +171,13 @@ public class RomanNumeraUtils {
         return builder.toString();
     }
 
+    /**
+     * Parse an individual roman digit and return its value.
+     *
+     * @param digit Roman digit.
+     * @return Value of <code>digit</code>.
+     * @throws NumberFormatException If <code>digit</code> is not a valid roman digit.
+     */
     private static int parseRomanDigit(char digit) {
         switch (digit) {
             case 'I':
@@ -161,7 +195,7 @@ public class RomanNumeraUtils {
             case 'M':
                 return 1000;
             default:
-                throw new IllegalArgumentException(String.format("invalid digit %c", digit));
+                throw new NumberFormatException(String.format("invalid digit %c", digit));
         }
     }
 
