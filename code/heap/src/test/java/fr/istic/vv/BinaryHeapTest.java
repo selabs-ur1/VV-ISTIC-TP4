@@ -18,6 +18,11 @@ public class BinaryHeapTest {
 
     private static final Comparator<Integer> INT_COMPARATOR = Integer::compareTo;
 
+    /**
+     * Utility method, used for create heaps from lists.
+     * @param list List of number.
+     * @return Binary min heap containing integers from <code>list</code>.
+     */
     private static BinaryHeap<Integer> heapFromList(List<Integer> list) {
         BinaryHeap<Integer> heap = new BinaryHeap<>(INT_COMPARATOR);
         for (int i : list)
@@ -26,6 +31,10 @@ public class BinaryHeapTest {
         return heap;
     }
 
+    /**
+     * Provides arbitrary, of at least two element, with unique elements integer list.
+     * @return The arbitrary list.
+     */
     @Provide
     private static Arbitrary<List<Integer>> twoElemList() {
         return Arbitraries.integers()
@@ -34,11 +43,19 @@ public class BinaryHeapTest {
                 .ofMinSize(2);
     }
 
+    /**
+     * @return Has an empty binary heap a size of 0 ?
+     */
     @Example
     boolean emptyCountIsZero() {
         return new BinaryHeap<>(INT_COMPARATOR).count() == 0;
     }
 
+    /**
+     * @param list For any integer list...
+     * @param i For any integer...
+     * @return heap.push(i) increases count of 1.
+     */
     @Property
     boolean pushIncreaseLength(@ForAll List<Integer> list, @ForAll int i) {
         BinaryHeap<Integer> heap = heapFromList(list);
@@ -49,6 +66,10 @@ public class BinaryHeapTest {
         return expectedCount == heap.count();
     }
 
+    /**
+     * @param list For any integer list...
+     * @return heap.pop(i) decreases count of 1.
+     */
     @Property
     boolean popNonEmptyDecreaseLength(@ForAll @NotEmpty List<Integer> list) {
         BinaryHeap<Integer> heap = heapFromList(list);
@@ -59,6 +80,9 @@ public class BinaryHeapTest {
         return expectedCount == heap.count();
     }
 
+    /**
+     * @return Pop throws a <code>NoSuchElementException</code> on an empty heap.
+     */
     @Example
     boolean popEmptyException() {
         try {
@@ -70,6 +94,9 @@ public class BinaryHeapTest {
         return false;
     }
 
+    /**
+     * @return Peek throws a <code>NoSuchElementException</code> on an empty heap.
+     */
     @Example
     boolean peekEmptyException() {
         try {
@@ -81,6 +108,10 @@ public class BinaryHeapTest {
         return false;
     }
 
+    /**
+     * @param list For any non-empty list...
+     * @return Peek does not change heap count.
+     */
     @Property
     boolean peekNonEmptyKeepsLength(@ForAll @NotEmpty List<Integer> list) {
         BinaryHeap<Integer> heap = heapFromList(list);
@@ -91,6 +122,10 @@ public class BinaryHeapTest {
         return expectedCount == heap.count();
     }
 
+    /**
+     * @param list For any non-empty list...
+     * @return Pops result had been previously added.
+     */
     @Property
     boolean popNonEmptyBelongsToInitialHeap(@ForAll @NotEmpty List<Integer> list) {
         BinaryHeap<Integer> heap = heapFromList(list);
@@ -98,6 +133,10 @@ public class BinaryHeapTest {
         return list.contains(heap.pop());
     }
 
+    /**
+     * @param list For any non-empty list...
+     * @return Peek does not remove key from the heap.
+     */
     @Property
     boolean peekNonEmptyKeepsInHeap(@ForAll @NotEmpty List<Integer> list) {
         BinaryHeap<Integer> heap = heapFromList(list);
@@ -106,6 +145,10 @@ public class BinaryHeapTest {
         return expected == heap.peek();
     }
 
+    /**
+     * @param list For any non-empty list of at least two elements, with unique elements...
+     * @return Peek does not change heap count.
+     */
     @Property
     boolean popNonEmptyRemoveFromHeap(@ForAll("twoElemList") List<Integer> list) {
         List<Integer> distinct = list.stream()
@@ -117,6 +160,10 @@ public class BinaryHeapTest {
         return expected != heap.peek();
     }
 
+    /**
+     * @param list For any non-empty list...
+     * @return Peek returns the minimum of previously pushed values.
+     */
     @Property
     boolean peekNonEmptyPeeksMin(@ForAll @NotEmpty List<Integer> list) {
         BinaryHeap<Integer> heap = heapFromList(list);
@@ -126,6 +173,10 @@ public class BinaryHeapTest {
                 .allMatch(i -> min <= i);
     }
 
+    /**
+     * @param list For any non-empty list...
+     * @return Pops returns the minimum of previously pushed values.
+     */
     @Property
     boolean popNonEmptyPopsMin(@ForAll @NotEmpty List<Integer> list) {
         BinaryHeap<Integer> heap = heapFromList(list);
@@ -135,6 +186,12 @@ public class BinaryHeapTest {
                 .allMatch(i -> min <= i);
     }
 
+    /**
+     * @param list For any non-empty list...
+     * @param i For any integer...
+     * @return Peek retrieves the previous minimum, or retrieves the previously pushed key if it is
+     * lower than the minimum key.
+     */
     @Property
     boolean pushReplacesMinIfMinPeek(@ForAll @NotEmpty List<Integer> list, @ForAll int i) {
         BinaryHeap<Integer> heap = heapFromList(list);
@@ -146,6 +203,12 @@ public class BinaryHeapTest {
         return expected == heap.peek();
     }
 
+    /**
+     * @param list For any non-empty list...
+     * @param i For any integer...
+     * @return Pop retrieves the previous minimum, or retrieves the previously pushed key if it is
+     * lower than the minimum key.
+     */
     @Property
     boolean pushReplacesMinIfMinPop(@ForAll @NotEmpty List<Integer> list, @ForAll int i) {
         BinaryHeap<Integer> heap = heapFromList(list);
