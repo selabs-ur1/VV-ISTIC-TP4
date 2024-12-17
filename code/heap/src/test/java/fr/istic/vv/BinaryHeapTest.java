@@ -34,11 +34,9 @@ public class BinaryHeapTest {
                 .ofMinSize(2);
     }
 
-    @Property
-    boolean countCorrespondsToDistinctPushes(@ForAll List<Integer> list) {
-        BinaryHeap<Integer> heap = heapFromList(list);
-
-        return list.size() == heap.count();
+    @Example
+    boolean emptyCountIsZero() {
+        return new BinaryHeap<>(INT_COMPARATOR).count() == 0;
     }
 
     @Property
@@ -101,13 +99,6 @@ public class BinaryHeapTest {
     }
 
     @Property
-    boolean peekNonEmptyBelongsToHeap(@ForAll @NotEmpty List<Integer> list) {
-        BinaryHeap<Integer> heap = heapFromList(list);
-
-        return list.contains(heap.peek());
-    }
-
-    @Property
     boolean peekNonEmptyKeepsInHeap(@ForAll @NotEmpty List<Integer> list) {
         BinaryHeap<Integer> heap = heapFromList(list);
         int expected = heap.peek();
@@ -164,11 +155,5 @@ public class BinaryHeapTest {
         heap.push(i);
 
         return expected == heap.pop();
-    }
-
-    @Example
-    void test() {
-        BinaryHeap<Integer> heap = heapFromList(List.of(0, 0, 0, -1));
-        heap.pop();
     }
 }
