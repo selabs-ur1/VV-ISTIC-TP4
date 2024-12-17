@@ -5,15 +5,30 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+/**
+ * Minimum binary heap data structure.
+ *
+ * @param <T> Type of heap keys.
+ */
 public class BinaryHeap<T> {
 
     private final Comparator<T> comparator;
     private final List<T> heap = new ArrayList<>();
 
+    /**
+     * Constructor of the class.
+     *
+     * @param comparator Comparator used to compare keys.
+     */
     public BinaryHeap(Comparator<T> comparator) {
         this.comparator = comparator;
     }
 
+    /**
+     * Pops the smallest key of the heap, removing the element from the heap.
+     *
+     * @return The smallest key of the heap.
+     */
     public T pop() {
         int count = heap.size();
 
@@ -74,6 +89,11 @@ public class BinaryHeap<T> {
         return result;
     }
 
+    /**
+     * Get the smallest key of the heap.
+     *
+     * @return The smallest key of the heap.
+     */
     public T peek() {
         if (heap.isEmpty())
             throw new NoSuchElementException("the heap is currently empty");
@@ -81,6 +101,11 @@ public class BinaryHeap<T> {
         return heap.get(0);
     }
 
+    /**
+     * Push a key to the heap.
+     *
+     * @param element Key to push to the heap.
+     */
     public void push(T element) {
         // Add the element to the heap.
         heap.add(element);
@@ -111,6 +136,9 @@ public class BinaryHeap<T> {
         }
     }
 
+    /**
+     * @return The size of the heap.
+     */
     public int count() {
         return heap.size();
     }
