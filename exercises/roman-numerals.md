@@ -47,3 +47,13 @@ Use [jqwik](https://jqwik.net/) to create property based tests verifying these t
 - Do not use any existing implementation, write your own code. 
 - Use the provided project template as a starting point.
 - In the project you can launch the tests with `mvn test`.
+
+Documentation :
+
+I had to add the check for an empty string in isValidRomanNumeral :
+
+if(value == null || value.isEmpty()) {
+                        return false;
+                }
+
+
