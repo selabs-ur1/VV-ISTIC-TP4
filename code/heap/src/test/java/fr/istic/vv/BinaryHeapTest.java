@@ -21,6 +21,16 @@ public class BinaryHeapTest {
             return heap;
         });
     }
+    @Provide
+    Arbitrary<BinaryHeap<String>> randomStringHeap() {
+        return Arbitraries.strings().array(String[].class).ofMinSize(0).ofMaxSize(100).map(array -> {
+            BinaryHeap<String> heap = new BinaryHeap<>(String::compareTo);
+            for (String i : array) {
+                heap.push(i);
+            }
+            return heap;
+        });
+    }
     @Property
     //ensures that the element returned by pop every time it is invoked is the minimum of the remaining elements in the heap.
     void popReturnsMinimumElement(@ForAll("randomIntHeap") BinaryHeap<Integer> heap) {
@@ -31,6 +41,19 @@ public class BinaryHeapTest {
         while ((heap.size) > 0) {
             Integer next = heap.pop();
             assertTrue(min <= next);
+            min = next;
+        }
+    }
+    @Property
+    //ensures that the element returned by pop every time it is invoked is the minimum of the remaining elements in the heap.
+    void popReturnsMinimumElementString(@ForAll("randomStringHeap") BinaryHeap<String> heap) {
+        if (heap.size == 0) {
+            return;
+        }
+        String min = heap.pop();
+        while ((heap.size) > 0) {
+            String next = heap.pop();
+            assertTrue(min.compareTo(next) <= 0);
             min = next;
         }
     }
