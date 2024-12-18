@@ -21,3 +21,24 @@ Using [jqwik](https://jqwik.net/) create a differential fuzzing strategy to test
 - Do not use any existing implementation, write your own code. 
 - Use the provided project template as a starting point.
 - In the project you can launch the tests with `mvn test`.
+
+## Answer ##
+
+Pour cette partie, nous avons commencé par écrire le test qui utilise la stratégie de fuzzing différentielle pour tester les trois algorithmes de tri. 
+Nous avons utilisé la librairie jqwik pour générer des tableaux aléatoires.
+Nous avons ensuite trié ces tableaux avec les trois algorithmes de tri et vérifié que les tableaux triés étaient identiques. 
+
+Résultat :
+
+![image4.png](../image4.png)
+
+Hormis le tri à bulle qui était plutôt simple, les deux autres algorithmes de tri étaient plus complexes à implémenter.
+Le test implémenté avant, nous a été utile pour voir si nos implémentations étaient correctes et en affichant les valeurs retournées par les fonctions de tris nous avons pu petit à petit comprendre pourquoi les valeurs étaient triées de la mauvaise façon pour ensuite corriger.
+
+A l'aide des tests nous avons pu corriger pleins de petites erreurs comme:
+- mettre i-1 au lieu de i
+- null pointer exception dans for
+- oublie de passer swap à true
+- utilisant d'un while au lieu d'un do while
+- mauvais paramètre dans l'appel à quicksortRecursive
+

@@ -47,3 +47,30 @@ Use [jqwik](https://jqwik.net/) to create property based tests verifying these t
 - Do not use any existing implementation, write your own code. 
 - Use the provided project template as a starting point.
 - In the project you can launch the tests with `mvn test`.
+
+## Answer ##
+
+Nous avons commencé par faire les tests en premier en commancant par le test de isValidRomanNumeral. 
+Pour ce test nous avons ajouté un ensemble de propriétés à respecter en utilisant ceux donner dans le sujet puis nous l'avons lancé avec différents chiffres romains générés aléatoirement (des bons et des mauvais).
+Si la fonction isValidRomanNumeral est bon c'est qu'elle retourne le même résultat que le test qui respectent toutes les propriétés.
+Pour le test des deux autres fonctions nous avons simplement créé un jeu de test avec le chiffre romain et la valeur numérique associée et nous avons vérifié que les fonctions retournaient bien le bon résultat.
+
+Pour les résultat, les fonctions toRomanNumeral et parseRomanNumeral semble fonctionner correctement.
+
+Résultat parseRomanNumeral:
+
+![image1.png](../image1.png)
+
+Résultat toRomanNumeral:
+
+![image2.png](../image2.png)
+
+Le fait de faire les tests en premier ne nous à pas beaucoup aidé pour la conception des fonctions car ca n'indique pas le problème mais ca nous à permis de savoir si la fonction était bonne à la fin. Bien que nous n'avons pas eu de difficulté majeur lors de la conception des fonctions.
+
+Pour la fonction isValidRomanNumeral, elle semble fonctionner correctement mais le test associé semble avoir un problème concernant certains chiffres romains mis à vrai alors qu'il n'existe pas.
+Ce problème arrive lorsqu'un chiffre devient négatif ou qu'un chiffre est soustrait plusieurs fois par des chiffres inférieurs alors qu'il ne doit être soustrait qu'une fois, nous n'avons pas trouvé comment corriger ce problème.
+Les test ou plutôt les propriétés données ont permis de comprendre les différents cas qui peuvent arriver lors de la validation d'un chiffre romain et nous ont permis de savoir facilement quelle règles n'est pas respectées dans la conception du regex.
+
+
+
+

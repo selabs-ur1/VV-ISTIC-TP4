@@ -35,3 +35,20 @@ With the help of [jqwik](https://jqwik.net/) create a test that generates random
 - Use the provided project template as a starting point. 
 - In the project you can launch the tests with `mvn test`.
 - You may reuse your binary heap code from the previous practical assignment.
+
+
+## Answer ##
+
+Pour cette partie, le test a été plutôt rapide à faire car il correspond à une situation précise.
+Nous avons décidé de comparer à chaque fois le minimum d'une Collection avec le résultat de la méthode pop pour une même liste donnée puis de la supprimer, ceci est répété jusqu'à ce que les "listes" soit vide.
+
+Résultat du test :
+
+![image3.png](../image3.png)
+
+Ce test nous à permis de comprendre qu'il ne fallait pas simplement supprimé la valeur minimum de l'arborecense mais qu'il fallait vérifier que la valeur qui la remplace soit bien à nouveau la valeur minimale.
+
+Correction d'erreur comme:
+- heap.remove(heap.size()); au lieu de heap.remove(heap.size() - 1);
+- oubli de mettre !heap.isEmpty()
+
