@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: SortingTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.121 s <<< FAILURE! - in SortingTest
+allElementsAreInCorrectOrderAfterSorting  Time elapsed: 0.117 s  <<< ERROR!
+net.jqwik.api.CannotFindArbitraryException: Cannot find an Arbitrary [comparators] for Parameter of type [@net.jqwik.api.ForAll("comparators") Comparator<Integer>]
+
