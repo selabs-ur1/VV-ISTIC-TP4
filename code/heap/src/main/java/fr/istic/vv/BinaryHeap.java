@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 
 public class BinaryHeap<T> {
 
-        public final ArrayList<T> heap;
+    public final ArrayList<T> heap;
     
     private final Comparator<T> comparator;
 

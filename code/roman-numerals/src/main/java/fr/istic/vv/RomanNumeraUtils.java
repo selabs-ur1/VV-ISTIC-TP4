@@ -7,7 +7,6 @@ import java.util.regex.Pattern;
 
 public class RomanNumeraUtils {
 
-        private Map<Character, Integer> romanValues;
         private static final Pattern VALID_ROMAN_PATTERN = Pattern.compile(
                         "^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$");
 
@@ -27,12 +26,10 @@ public class RomanNumeraUtils {
                         return false;
                 }
 
-                // Check against regex pattern
                 if (!VALID_ROMAN_PATTERN.matcher(value).matches()) {
                         return false;
                 }
 
-                // Check symbol repetition rules
                 if (hasInvalidRepetition(value)) {
                         return false;
                 }
@@ -65,15 +62,12 @@ public class RomanNumeraUtils {
                 int total = 0;
                 int prevValue = 0;
 
-                // Iterate from right to left
                 for (int i = numeral.length() - 1; i >= 0; i--) {
                         int currentValue = ROMAN_VALUES.get(numeral.charAt(i));
 
-                        // If current value is greater or equal, add
                         if (currentValue >= prevValue) {
                                 total += currentValue;
                         }
-                        // If current value is smaller, subtract
                         else {
                                 total -= currentValue;
                         }

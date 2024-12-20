@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="SortingTest" time="0.381" tests="2" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="SortingTest" time="0.498" tests="2" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -13,7 +13,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="FR"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-21-openjdk-amd64/lib"/>
-    <property name="sun.java.command" value="/home/daouda-traore/Documents/Master2/V/VV-ISTIC-TP4/code/sorting/target/surefire/surefirebooter4294491260820225397.jar /home/daouda-traore/Documents/Master2/V/VV-ISTIC-TP4/code/sorting/target/surefire 2024-12-17T04-24-29_287-jvmRun1 surefire15734260092485433947tmp surefire_08060833227919327753tmp"/>
+    <property name="sun.java.command" value="/home/daouda-traore/Documents/Master2/V/VV-ISTIC-TP4/code/sorting/target/surefire/surefirebooter3408262375276513108.jar /home/daouda-traore/Documents/Master2/V/VV-ISTIC-TP4/code/sorting/target/surefire 2024-12-20T20-15-43_633-jvmRun1 surefire11979709369578465080tmp surefire_015129182230847040170tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/daouda-traore/Documents/Master2/V/VV-ISTIC-TP4/code/sorting/target/test-classes:/home/daouda-traore/Documents/Master2/V/VV-ISTIC-TP4/code/sorting/target/classes:/home/daouda-traore/.m2/repository/net/jqwik/jqwik/1.3.10/jqwik-1.3.10.jar:/home/daouda-traore/.m2/repository/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar:/home/daouda-traore/.m2/repository/net/jqwik/jqwik-api/1.3.10/jqwik-api-1.3.10.jar:/home/daouda-traore/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/daouda-traore/.m2/repository/org/junit/platform/junit-platform-commons/1.7.0/junit-platform-commons-1.7.0.jar:/home/daouda-traore/.m2/repository/net/jqwik/jqwik-engine/1.3.10/jqwik-engine-1.3.10.jar:/home/daouda-traore/.m2/repository/org/junit/platform/junit-platform-engine/1.7.0/junit-platform-engine-1.7.0.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -28,13 +28,13 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/home/daouda-traore/Documents/Master2/V/VV-ISTIC-TP4/code/sorting/target/surefire/surefirebooter4294491260820225397.jar"/>
+    <property name="surefire.real.class.path" value="/home/daouda-traore/Documents/Master2/V/VV-ISTIC-TP4/code/sorting/target/surefire/surefirebooter3408262375276513108.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.5+11-Ubuntu-1ubuntu124.04"/>
     <property name="user.name" value="daouda-traore"/>
     <property name="stdout.encoding" value="UTF-8"/>
     <property name="path.separator" value=":"/>
-    <property name="os.version" value="6.8.0-50-generic"/>
+    <property name="os.version" value="6.8.0-51-generic"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
@@ -54,6 +54,6 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="differentSortingAlgorithmsProduceSameResult" classname="fr.istic.vv.SortingTest" time="0.294"/>
-  <testcase name="absoluteValueOfAllNumbersIsPositive" classname="fr.istic.vv.SortingTest" time="0.082"/>
+  <testcase name="differentSortingAlgorithmsProduceSameResult" classname="fr.istic.vv.SortingTest" time="0.374"/>
+  <testcase name="absoluteValueOfAllNumbersIsPositive" classname="fr.istic.vv.SortingTest" time="0.116"/>
 </testsuite>

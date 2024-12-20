@@ -25,7 +25,6 @@ public class RomanNumeralTest {
 
     @Provide
     Arbitrary<String> validRomanNumerals() {
-        // Provide a set of valid Roman numerals for testing
         return Arbitraries.of(
             "I", "IV", "V", "IX", "X", 
             "XIV", "XIX", "XXIV", 
