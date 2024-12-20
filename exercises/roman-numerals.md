@@ -47,3 +47,10 @@ Use [jqwik](https://jqwik.net/) to create property based tests verifying these t
 - Do not use any existing implementation, write your own code. 
 - Use the provided project template as a starting point.
 - In the project you can launch the tests with `mvn test`.
+
+
+### Notes
+
+parseRomanNumeral :
+- III : ok
+- IV : total = 1, previous = 1 -> ensuite total += 5 - 1 -> faux
