@@ -136,6 +136,7 @@ public class Sorting {
 
     /**
      * Recursive merge sort procedure.
+     * Directly implemented.
      *
      * @param array      List to sort.
      * @param start      Start of the sub-list to sort.
@@ -161,7 +162,7 @@ public class Sorting {
 
     /**
      * Merge sort merge procedure.
-     * Implement by hand.
+     * Directly implemented.
      *
      * @param array      List to merge.
      * @param start      Start of the left sorted sub-list.
