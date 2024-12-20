@@ -1,12 +1,9 @@
 package fr.istic.vv;
 
 import java.util.*;
-import java.util.regex.Pattern;
 
 public class RomanNumeraUtils {
 
-    private static final Pattern ROMAN_NUMERAL_PATTERN =
-            Pattern.compile("^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$");
     private static final Map<Character, Integer> ROMAN_TO_INT_MAP = new HashMap<>();
     private static final Map<Integer, String> INT_TO_ROMAN_MAP = new LinkedHashMap<>();
 
@@ -51,7 +48,7 @@ public class RomanNumeraUtils {
 
         for (int i = input.length() - 1; i >= 0; i--) {
             char currentChar = input.charAt(i);
-            int currentValue = romanCharToValue(currentChar);
+            int currentValue = ROMAN_TO_INT_MAP.get(currentChar);
 
             // Rule 1: If a smaller value appears before a larger value, it must be subtractive
             if (currentValue < prevValue) {
@@ -74,19 +71,6 @@ public class RomanNumeraUtils {
         }
 
         return true;
-    }
-
-    private static int romanCharToValue(char c) {
-        switch (c) {
-            case 'I': return 1;
-            case 'V': return 5;
-            case 'X': return 10;
-            case 'L': return 50;
-            case 'C': return 100;
-            case 'D': return 500;
-            case 'M': return 1000;
-            default: return -1; // Invalid character
-        }
     }
 
     private static boolean isValidSubtractivePair(char smaller, char larger) {

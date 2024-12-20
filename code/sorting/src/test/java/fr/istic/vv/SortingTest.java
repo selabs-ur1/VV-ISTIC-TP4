@@ -1,30 +1,57 @@
 package fr.istic.vv;
-
 import net.jqwik.api.*;
+
 import java.util.Arrays;
 import java.util.Comparator;
 
-class SortingTests {
+public class SortingTest {
 
-    @Property
-    boolean differentialFuzzingTest(@ForAll("randomArrays") Integer[] array) {
-        Comparator<Integer> comparator = Integer::compare;
+    final int ARRAY_MAX_SIZE = 10;
 
-        // Clone the input array to ensure each algorithm starts with the same data
-        Integer[] bubbleSorted = Sorting.bubblesort(array.clone(), comparator);
-        Integer[] quickSorted = Sorting.quicksort(array.clone(), comparator);
-        Integer[] mergeSorted = Sorting.mergesort(array.clone(), comparator);
+    final Comparator<Integer> integerComparator = Integer::compareTo;
+    final Comparator<String> stringComparator = String::compareTo;
+    final Comparator<Double> doubleComparator = Double::compareTo;
 
-        // All three algorithms should produce the same result
-        return Arrays.equals(bubbleSorted, quickSorted) && Arrays.equals(quickSorted, mergeSorted);
+    @Provide
+    Arbitrary<Integer[]> tabIntProvider() {
+        return Arbitraries.integers().array(Integer[].class).ofMaxSize(ARRAY_MAX_SIZE);
     }
 
     @Provide
-    Arbitrary<Integer[]> randomArrays() {
-        return Arbitraries.integers()
-                .between(-1000, 1000) // Random values between -1000 and 1000
-                .array(Integer[].class)
-                .ofMinSize(1)          // Minimum array size of 1
-                .ofMaxSize(100);       // Maximum array size of 100
+    Arbitrary<String[]> tabStringProvider() {
+        return Arbitraries.strings().array(String[].class).ofMaxSize(ARRAY_MAX_SIZE);
     }
+
+    @Provide
+    Arbitrary<Double[]> tabDoubleProvider() {
+        return Arbitraries.doubles().array(Double[].class).ofMaxSize(ARRAY_MAX_SIZE);
+    }
+
+
+    @Property
+    boolean integerArrayIsSorted(@ForAll("tabIntProvider") Integer [] tab) {
+        final Integer [] quicksort = Sorting.quicksort(tab.clone(), integerComparator);
+        final Integer [] bubblesort = Sorting.bubblesort(tab.clone(), integerComparator);
+        final Integer [] mergesort = Sorting.mergesort(tab.clone(), integerComparator);
+        return Arrays.equals(quicksort, bubblesort) && Arrays.equals(bubblesort, mergesort);
+    }
+
+    @Property
+    boolean stringArrayIsSorted(@ForAll("tabStringProvider") String [] tab) {
+        final String [] quicksort = Sorting.quicksort(tab.clone(), stringComparator);
+        final String [] bubblesort = Sorting.bubblesort(tab.clone(), stringComparator);
+        final String [] mergesort = Sorting.mergesort(tab.clone(), stringComparator);
+        return Arrays.equals(quicksort, bubblesort) && Arrays.equals(bubblesort, mergesort);
+    }
+
+    @Property
+    boolean doubleArrayIsSorted(@ForAll("tabDoubleProvider") Double [] tab) {
+        final Double [] quicksort = Sorting.quicksort(tab.clone(), doubleComparator);
+        final Double [] bubblesort = Sorting.bubblesort(tab.clone(), doubleComparator);
+        final Double [] mergesort = Sorting.mergesort(tab.clone(), doubleComparator);
+        return Arrays.equals(quicksort, bubblesort) && Arrays.equals(bubblesort, mergesort);
+    }
+
+
+
 }
