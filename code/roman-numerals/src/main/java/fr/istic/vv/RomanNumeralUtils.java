@@ -56,10 +56,14 @@ public class RomanNumeralUtils {
      * @return true si le nombre romain est valide, false sinon.
      */
     public static boolean isValidRomanNumeral(String value) {
+        if(value == null || value.isEmpty()){
+            throw new IllegalArgumentException("Convertion impossible pour une valeur numeral vide");
+        }
         List<Symbole> romanNumeral = Symbole.stringToListRomanSymb(value);
         return !isMoreThanThreeConsecutiveSymbolsMCXI(romanNumeral)
                 && !isSymbolDLVRepeated(romanNumeral)
-                && isValidFormat(romanNumeral);
+                && isValidFormat(romanNumeral)
+                && isValidSubtractionRules(romanNumeral);
     }
 
     /**
@@ -68,7 +72,13 @@ public class RomanNumeralUtils {
      * @param numeral la chaîne représentant un nombre romain à convertir.
      * @return la valeur entière correspondant au nombre romain.
      */
-    public static int parseRomanNumeral(String numeral) {
+    public static int parseRomanNumeral(String numeral){
+        if(!isValidRomanNumeral(numeral) ) {
+            throw new IllegalArgumentException("Le nombre romain inséré est invalide");
+        }
+        if(numeral.isEmpty()){
+            throw new IllegalArgumentException("Convertion impossible pour une valeur numeral vide");
+        }
         List<Symbole> romanNumeral = Symbole.stringToListRomanSymb(numeral);
         int result = 0;
 
@@ -189,6 +199,28 @@ public class RomanNumeralUtils {
         }
         return true;
     }
+    /**
+     * Vérifie les règles de soustraction : un symbole plus petit peut être placé avant un plus grand.
+     * Seuls les symboles I, X et C peuvent être soustraits.
+     *
+     * @param romanNumeral la liste des symboles représentant un nombre romain.
+     * @return true si les règles de soustraction sont respectées, false sinon.
+     */
+    private static boolean isValidSubtractionRules(List<Symbole> romanNumeral) {
+        for (int i = 0; i < romanNumeral.size() - 1; i++) {
+            Symbole current = romanNumeral.get(i);
+            Symbole next = romanNumeral.get(i + 1);
+
+            // Si un symbole plus petit apparaît avant un plus grand
+            if (current.symbToInt() < next.symbToInt()) {
+                // Vérifier si la soustraction est valide selon les règles
+                if (!isValidSubtraction(current, next)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
     /**
      * Vérifie si la règle de soustraction est valide entre deux symboles romains.
@@ -200,8 +232,7 @@ public class RomanNumeralUtils {
     private static boolean isValidSubtraction(Symbole low, Symbole high) {
         if (low == Symbole.I && (high == Symbole.V || high == Symbole.X)) return true;
         if (low == Symbole.X && (high == Symbole.L || high == Symbole.C)) return true;
-        if (low == Symbole.C && (high == Symbole.D || high == Symbole.M)) return true;
-        return false;
+        return low == Symbole.C && (high == Symbole.D || high == Symbole.M);
     }
 
     /**
@@ -236,5 +267,4 @@ public class RomanNumeralUtils {
 
         return symboles;
     }
-
 }
