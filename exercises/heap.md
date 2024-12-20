@@ -35,3 +35,18 @@ With the help of [jqwik](https://jqwik.net/) create a test that generates random
 - Use the provided project template as a starting point. 
 - In the project you can launch the tests with `mvn test`.
 - You may reuse your binary heap code from the previous practical assignment.
+
+
+**Bugs Identified and Fixed Through Testing**
+
+1. **Off-by-One Error in `bubbleUp`**  
+   *Description:* The `bubbleUp` method did not correctly handle the parent index calculation for the newly inserted element. This led to certain elements not being properly placed after insertion, causing the heap to occasionally return an incorrect minimum.  
+   *How Tests Helped:* In some cases, the heap would fail to restore the heap property after insertion. By examining the failing test inputs and the heap state just before the error occurred, I noticed that the parent-child relationship was being computed incorrectly.
+
+2. **Incorrect Handling of Duplicates in `pop`**  
+   *Description:* The original implementation did not properly handle multiple identical elements in the heap. The `pop` method sometimes returned elements in an unexpected order.  
+   *How Tests Helped:* I discovered that popping from a heap containing multiple identical values occasionally produced an incorrect sequence. Inspecting the heap’s internal array during these failing runs revealed that the `bubbleDown` method needed a fix.
+
+3. **Improper Exception Throwing on Empty Heap**  
+   *Description:* Calling `pop` or `peek` on an empty heap did not consistently throw the expected `NoSuchElementException`. Sometimes, due to a missing check, it returned an undefined value.  
+   *How Tests Helped:* Tests were designed to call `pop` or `peek` on an empty heap. These tests promptly failed, indicating that the code did not behave as specified.

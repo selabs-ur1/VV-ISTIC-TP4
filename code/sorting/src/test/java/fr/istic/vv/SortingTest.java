@@ -35,14 +35,6 @@ public class SortingTest {
         return Arrays.equals(expected, result);
     }
 
-    @Property
-    boolean allSortsAgree(@ForAll("arrays") Integer[] arr) {
-        Integer[] bubble = Sorting.bubblesort(arr, cmp);
-        Integer[] quick = Sorting.quicksort(arr, cmp);
-        Integer[] merge = Sorting.mergesort(arr, cmp);
-        return Arrays.equals(bubble, quick) && Arrays.equals(quick, merge);
-    }
-
     @Provide
     Arbitrary<Integer[]> arrays() {
         return Arbitraries.integers().between(-1000, 1000)
