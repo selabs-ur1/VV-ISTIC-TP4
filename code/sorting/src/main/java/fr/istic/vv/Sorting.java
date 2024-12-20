@@ -154,6 +154,7 @@ public class Sorting {
 
     /**
      * Merge sort merge procedure.
+     * Implement by hand.
      *
      * @param array      List to merge.
      * @param start      Start of the left sorted sub-list.
