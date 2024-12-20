@@ -3,6 +3,7 @@ import net.jqwik.api.*;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 
 public class BinaryHeapTest {
@@ -77,6 +78,19 @@ public class BinaryHeapTest {
         fillHeap(heap, values);
         values.sort(comparator);
         return heap.pop().equals(values.get(0));
+    }
+
+    @Property
+    boolean popIsSorted(@ForAll @From("integerLists") List<Integer> values,
+                                @ForAll @From("integerComparators") Comparator<Integer> comparator){
+        BinaryHeap<Integer> heap = new BinaryHeap<>(comparator);
+        Assume.that(!values.isEmpty());
+        fillHeap(heap, values);
+        values.sort(comparator);
+        for(Integer value : values){
+            if(!Objects.equals(value, heap.pop())) return false;
+        }
+        return true;
     }
 
     @Property
