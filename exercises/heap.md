@@ -35,3 +35,33 @@ With the help of [jqwik](https://jqwik.net/) create a test that generates random
 - Use the provided project template as a starting point. 
 - In the project you can launch the tests with `mvn test`.
 - You may reuse your binary heap code from the previous practical assignment.
+
+
+# Resultats de mes tests:
+
+```plaintext
+|------------------- jqwik -------------------
+tries = 1000                  | # of calls to property
+checks = 1000                 | # of not rejected calls
+generation = RANDOMIZED       | parameters are randomly generated
+after-failure = PREVIOUS_SEED | use the previous seed
+edge-cases#mode = MIXIN       | edge cases are mixed in
+edge-cases#total = 10         | # of all combined edge cases
+edge-cases#tried = 10         | # of edge cases tried in current run
+seed = 3108705324876878392    | random seed to reproduce generated values
+
+
+
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.375 s - in BinaryHeapTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.939 s
+[INFO] Finished at: 2024-12-20T21:02:10+01:00
+[INFO] ------------------------------------------------------------------------
+diallo@diallo-Latitude-5520:~/IdeaProjects/VV-ISTIC-TP4/code/heap$ 

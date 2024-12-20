@@ -47,3 +47,37 @@ Use [jqwik](https://jqwik.net/) to create property based tests verifying these t
 - Do not use any existing implementation, write your own code. 
 - Use the provided project template as a starting point.
 - In the project you can launch the tests with `mvn test`.
+
+# Resultats de mes tests:
+
+## Execution Logs
+
+### Properties File
+```plaintext
+Dec 20, 2024 9:18:32 PM net.jqwik.engine.JqwikProperties loadProperties
+INFO: No Jqwik properties file [jqwik.properties] found.
+
+Test 1
+timestamp = 2024-12-20T21:18:32.651490966, RomanNumeralTest:validRomanRoundTrip =
+                              |------------------- jqwik -------------------
+tries = 1000                  | # of calls to property
+checks = 1000                 | # of not rejected calls
+generation = RANDOMIZED       | parameters are randomly generated
+after-failure = PREVIOUS_SEED | use the previous seed
+edge-cases#mode = MIXIN       | edge cases are mixed in
+edge-cases#total = 4          | # of all combined edge cases
+edge-cases#tried = 4          | # of edge cases tried in current run
+seed = -392784312717111911    | random seed to reproduce generated values
+
+Test 2:
+
+timestamp = 2024-12-20T21:18:32.759653976, RomanNumeralTest:parseRomanIsConsistent =
+                              |------------------- jqwik -------------------
+tries = 1000                  | # of calls to property
+checks = 1000                 | # of not rejected calls
+generation = RANDOMIZED       | parameters are randomly generated
+after-failure = PREVIOUS_SEED | use the previous seed
+edge-cases#mode = MIXIN       | edge cases are mixed in
+edge-cases#total = 4          | # of all combined edge cases
+edge-cases#tried = 4          | # of edge cases tried in current run
+seed = 318894219912707512     | random seed to reproduce generated values
