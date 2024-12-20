@@ -4,7 +4,10 @@ import java.util.Comparator;
 
 public class BinaryHeap<T> {
 
-    public BinaryHeap(Comparator<T> comparator) {  }
+
+    public BinaryHeap(Comparator comparator) {
+
+    }
 
     public T pop() { return null; }
 
