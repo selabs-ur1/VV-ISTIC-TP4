@@ -9,16 +9,15 @@ public class SortingTest {
     Comparator<Integer> comparator = Integer::compareTo;
     Sorting sorting = new Sorting();
 
-    @Property(tries = 1)
+    @Property(tries = 1000)
     void testDifferentialSorting(@ForAll("arrays") Integer[] array) {
-        //Regarder les retours de methode de trie car probleme.
         System.out.println("initial :" + Arrays.toString(array));
         Integer[] bubbleSorted = sorting.bubblesort(array.clone(), comparator);
         System.out.println("bubble :" +Arrays.toString(bubbleSorted));
         Integer[] quickSorted = sorting.quicksort(array.clone(), comparator);
-       // System.out.println("quick :" + Arrays.toString(quickSorted));
+        System.out.println("quick :" + Arrays.toString(quickSorted));
         Integer[] mergeSorted = sorting.mergesort(array.clone(), comparator);
-        //System.out.println("merge :" +Arrays.toString(mergeSorted));
+        System.out.println("merge :" +Arrays.toString(mergeSorted));
 
         assert Arrays.equals(bubbleSorted, quickSorted) : "Bug: Results differ between bubble sort and quick sort";
         assert Arrays.equals(bubbleSorted, mergeSorted) : "Bug: Results differ between bubble sort and merge sort";

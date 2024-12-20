@@ -83,6 +83,7 @@ public class RomanNumeralTest {
       }
     }
 
+
     @Property
     //@Report(Reporting.GENERATED)
     boolean testLimiteNumeral2(@ForAll @IntRange(min = 4000, max = 10000) int number) {
@@ -90,6 +91,21 @@ public class RomanNumeralTest {
             RomanNumeraUtils.toRomanNumeral(number);
             return false;
         } catch (IllegalArgumentException e) {
+            return true;
+        }
+    }
+
+    @Property
+    boolean testFailParseRomanNumeral() {
+        String invalidRomanNumeral = generateSimpleNumeralsInvalidList();
+
+        System.out.println("Testing invalid Roman numeral: " + invalidRomanNumeral);
+        try {
+            RomanNumeraUtils.parseRomanNumeral(invalidRomanNumeral);
+            System.out.println("No exception thrown for: " + invalidRomanNumeral);
+            return false;
+        } catch (IllegalArgumentException e) {
+            System.out.println("Exception thrown for invalid Roman numeral: " + invalidRomanNumeral);
             return true;
         }
     }
@@ -118,6 +134,22 @@ public class RomanNumeralTest {
         addRomanUnit(numeralRoman, "I", random.nextInt(4));
         return numeralRoman.toString();
     }
+
+    private String generateSimpleNumeralsInvalidList(){
+        StringBuilder numeralRoman = new StringBuilder();
+        Random random = new Random();
+        addRomanUnit(numeralRoman, "I", random.nextInt(7));
+        addRomanUnit(numeralRoman, "V", random.nextInt(6));
+        addRomanUnit(numeralRoman, "X", random.nextInt(7));
+        addRomanUnit(numeralRoman, "L", random.nextInt(6));
+        addRomanUnit(numeralRoman, "C", random.nextInt(7));
+        addRomanUnit(numeralRoman, "D", random.nextInt(6));
+        addRomanUnit(numeralRoman, "M", random.nextInt(7));
+        return numeralRoman.toString();
+    }
+
+
+
 
     private String generateComplexeNumeralsList(){
         StringBuilder numeralRoman = new StringBuilder();

@@ -20,10 +20,10 @@ public class RomanNumeraUtils {
                 if (value == null || value.isEmpty()){
                         return false;
                 }
-                String romanThousand = "M{0,3}";
-                String romanHundred = "(CM|CD|D?C{0,3})?";
-                String romanTen = "(XC|XL|L?X{0,3})?";
-                String romanUnit = "(IX|IV|V?I{0,3})?";
+                String romanThousand = "M{0,3}";//jusqu'a 3000
+                String romanHundred = "(CM|CD|D?C{0,3})?";//100 à 900
+                String romanTen = "(XC|XL|L?X{0,3})?";//10 à 90
+                String romanUnit = "(IX|IV|V?I{0,3})?"; //1 à 9
                 String roman = "^" + romanThousand + romanHundred + romanTen + romanUnit + "$";
                 return  value.matches(roman);
         }

@@ -20,7 +20,7 @@ public class Sorting {
 
     public static <T> T[] quicksort(T[] array, Comparator<T> comparator) {
         T[] result = array.clone();
-        quicksortHelper(array, 0, result.length - 1, comparator);
+        quicksortHelper(result  , 0, result.length - 1, comparator);
         return result;
 
     }
@@ -34,7 +34,7 @@ public class Sorting {
     }
 
     private static <T> int partition(T[] array, int low, int high, Comparator<T> comparator) {
-        T pivot = array[low];
+        T pivot = array[high];
         int i = low - 1;
         for (int j = low; j < high; j++) {
             if(comparator.compare(array[j], pivot) <= 0) {
@@ -54,36 +54,43 @@ public class Sorting {
 
     public static <T> T[] mergesort(T[] array, Comparator<T> comparator) {
         T[] result = array.clone();
-        mergesortHelper(result, 0, result.length - 1, comparator);
+        T[] temp = array.clone();
+        mergesortHelper(result, temp, 0, result.length - 1, comparator);
         return result;
 
     }
 
-    private static <T> void mergesortHelper(T[] array, int left, int right, Comparator<T> comparator) {
+    private static <T> void mergesortHelper(T[] array, T[]temp, int left, int right, Comparator<T> comparator) {
         if(left < right) {
             int middle = (left + right) / 2;
-            mergesortHelper(array, left, middle, comparator);
-            mergesortHelper(array, middle + 1, right, comparator);
-            merge(array, left, middle, right, comparator);
+            mergesortHelper(array, temp, left, middle, comparator);
+            mergesortHelper(array, temp, middle + 1, right, comparator);
+            merge(array, temp, left, middle, right, comparator);
         }
     }
 
-    private static <T> void merge(T[] array, int left, int mid, int right, Comparator<T> comparator) {
+    private static <T> void merge(T[] array, T[] temp, int left, int mid, int right, Comparator<T> comparator) {
+
+        System.arraycopy(array, left, temp, left, right - left + 1);
+
         int i = left;
         int j = mid + 1;
         int k = left;
 
         while(i <= mid && j <= right) {
-            if(comparator.compare(array[i], array[j]) <= 0)
-                array[k++] = array[i++];
+            if(comparator.compare(temp[i], temp[j]) <= 0)
+                array[k++] = temp[i++];
             else
-                array[k++] = array[j++];
+                array[k++] = temp[j++];
         }
-        while(i <= mid) 
-            array[k++] = array[i++];
+        while(i <= mid) {
+            array[k++] = temp[i++];
+        }
 
-        while(j <= right)
-            array[k++] = array[j++];
+        while (j <= right) {
+            array[k++] = temp[j++];
+        }
+
         
     }
 
