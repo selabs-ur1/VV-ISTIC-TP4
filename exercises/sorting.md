@@ -21,3 +21,8 @@ Using [jqwik](https://jqwik.net/) create a differential fuzzing strategy to test
 - Do not use any existing implementation, write your own code. 
 - Use the provided project template as a starting point.
 - In the project you can launch the tests with `mvn test`.
+
+Dans un premier temps les test ont mit très longtemps à s'executer, je me suis rendu compte quej 'avais oublier dans l'algorithme de faire l'échange : result[i ] = temp; au lieux de result[i + 1] = temp;
+
+Ensuite pour quicksort j'ai un retour comme quoi même un reduit à [0,1] ne passait pas mais, il c'est avéré que je me suis trompé sur les signe dans le quicksort
+
