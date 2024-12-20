@@ -27,16 +27,18 @@ public class Sorting {
 
         boolean swapped;
 
+        // Swapping elements until each element of the list is ordered.
         do {
             swapped = false;
             for (int i = 1; i < length; i++)
+                // We swap only if the previous element is greater than the next element.
                 if (comparator.compare(result.get(i - 1), result.get(i)) > 0) {
                     T tmp = result.get(i);
                     result.set(i, result.get(i - 1));
                     result.set(i - 1, tmp);
                     swapped = true;
                 }
-        } while (swapped);
+        } while (swapped);  // If no value had been swapped => list is ordered.
 
         return result;
     }
@@ -96,6 +98,8 @@ public class Sorting {
         T pivot = array.get(end - 1);
         int i = start;
 
+        // Indentify the pivot while moving  inferior values to the left partition and superior
+        // values to the right partition.
         for (int j = start; j < end - 1; j++)
             if (comparator.compare(array.get(j), pivot) <= 0) {
                 T tmp = array.get(i);
@@ -104,10 +108,13 @@ public class Sorting {
                 i++;
             }
 
+        // Exchange the last value and the value at pivot i in order to place the medium value
+        // at the pivot's index.
         T tmp = array.get(i);
         array.set(i, array.get(end - 1));
         array.set(end - 1, tmp);
 
+        // Return pivot index.
         return i;
     }
 
