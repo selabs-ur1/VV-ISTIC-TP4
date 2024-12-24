@@ -1,3 +1,4 @@
 .idea
 code/sorting/.jqwik-database
 code/sorting/target
+**/target
